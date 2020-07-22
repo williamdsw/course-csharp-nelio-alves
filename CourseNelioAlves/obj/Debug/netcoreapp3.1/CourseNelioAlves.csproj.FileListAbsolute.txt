@@ -1,0 +1,13 @@
+D:\workspace\vs2019\CourseNelioAlves\CourseNelioAlves\bin\Debug\netcoreapp3.1\CourseNelioAlves.exe
+D:\workspace\vs2019\CourseNelioAlves\CourseNelioAlves\bin\Debug\netcoreapp3.1\CourseNelioAlves.deps.json
+D:\workspace\vs2019\CourseNelioAlves\CourseNelioAlves\bin\Debug\netcoreapp3.1\CourseNelioAlves.runtimeconfig.json
+D:\workspace\vs2019\CourseNelioAlves\CourseNelioAlves\bin\Debug\netcoreapp3.1\CourseNelioAlves.runtimeconfig.dev.json
+D:\workspace\vs2019\CourseNelioAlves\CourseNelioAlves\bin\Debug\netcoreapp3.1\CourseNelioAlves.dll
+D:\workspace\vs2019\CourseNelioAlves\CourseNelioAlves\bin\Debug\netcoreapp3.1\CourseNelioAlves.pdb
+D:\workspace\vs2019\CourseNelioAlves\CourseNelioAlves\obj\Debug\netcoreapp3.1\CourseNelioAlves.csprojAssemblyReference.cache
+D:\workspace\vs2019\CourseNelioAlves\CourseNelioAlves\obj\Debug\netcoreapp3.1\CourseNelioAlves.csproj.CoreCompileInputs.cache
+D:\workspace\vs2019\CourseNelioAlves\CourseNelioAlves\obj\Debug\netcoreapp3.1\CourseNelioAlves.AssemblyInfoInputs.cache
+D:\workspace\vs2019\CourseNelioAlves\CourseNelioAlves\obj\Debug\netcoreapp3.1\CourseNelioAlves.AssemblyInfo.cs
+D:\workspace\vs2019\CourseNelioAlves\CourseNelioAlves\obj\Debug\netcoreapp3.1\CourseNelioAlves.dll
+D:\workspace\vs2019\CourseNelioAlves\CourseNelioAlves\obj\Debug\netcoreapp3.1\CourseNelioAlves.pdb
+D:\workspace\vs2019\CourseNelioAlves\CourseNelioAlves\obj\Debug\netcoreapp3.1\CourseNelioAlves.genruntimeconfig.cache
