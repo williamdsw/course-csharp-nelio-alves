@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Transactions;
 
 namespace CourseNelioAlves
 {
@@ -7,19 +8,19 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            int a = 10;
-            int b = 2;
+            // a float (4 bytes) fits in a double (8 bytes)
+            float x = 4.5f;
+            double y = x;
 
-            Console.WriteLine($"a = {a}, b = {b}");
-            Console.WriteLine($"a += b --> {a += b}");
-            Console.WriteLine($"a -= b --> {a -= b}");
-            Console.WriteLine($"a *= b --> {a *= b}");
-            Console.WriteLine($"a /= b --> {a /= b}");
-            Console.WriteLine($"a %= b --> {a %= b}");
-            Console.WriteLine($"a++ --> {a++}");
-            Console.WriteLine($"a-- --> {a--}");
-            Console.WriteLine($"++a --> {++a}");
-            Console.WriteLine($"--a --> {--a}");
+            // but a double doesn't fit in a float without casting
+            double a = 5.1;
+            float b = (float) a;
+            int c = (int) a;
+
+            Console.WriteLine(y);
+            Console.WriteLine(b);
+            Console.WriteLine(c);
+
         }
     }
 }
