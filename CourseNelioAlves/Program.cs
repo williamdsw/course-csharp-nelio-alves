@@ -6,17 +6,25 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            sbyte mySbyte = 100;
-            SByte myOtherSByte = 100;
-            byte myByte = 126;
-            int myInteger = 1000;
-            long myLong = 27654762543L;
+            bool hasCompleted = false;
+            char genre = 'F';
+            char character = '\u0041';
+            float myFloat = 4.5f;
+            double myDouble = 4.5;
+            string name = "Maria Green";
+            object myObject = "Alex Brown";
+            object otherObject = 4.5;
+            decimal max = decimal.MaxValue;
 
-            Console.WriteLine($"sbyte: {mySbyte}");
-            Console.WriteLine($"SByte: {myOtherSByte}");
-            Console.WriteLine($"byte: {myByte}");
-            Console.WriteLine($"int: {myInteger}");
-            Console.WriteLine($"long: {myLong}");
+            Console.WriteLine($"bool: {hasCompleted}");
+            Console.WriteLine($"char: {genre}");
+            Console.WriteLine($"char: {character}");
+            Console.WriteLine($"float: {myFloat}");
+            Console.WriteLine($"double: {myDouble}");
+            Console.WriteLine($"string: {name}");
+            Console.WriteLine($"object: {myObject}");
+            Console.WriteLine($"object: {otherObject}");
+            Console.WriteLine($"decimal max: {max}");
         }
     }
 }
