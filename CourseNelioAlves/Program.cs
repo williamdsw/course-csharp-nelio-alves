@@ -7,20 +7,29 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            int local = 19; // needs to be initialized
-            double price = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-            double total = 0;
+            Console.WriteLine("Enter 3 numbers: ");
+            int a = int.Parse(Console.ReadLine());
+            int b = int.Parse(Console.ReadLine());
+            int c = int.Parse(Console.ReadLine());
+            int result = WhoIsGreater(a, b, c);
 
-            Console.WriteLine($"Price: {price:F2}");
+            Console.WriteLine($"{result} is the greater");
+        }
 
-            if (price >= 100.00)
+        private static int WhoIsGreater(int a, int b, int c)
+        {
+            if (a > b && a > c)
             {
-                double discount = price * 0.1f;
-                total = price - discount;
-                Console.WriteLine($"Discount: {discount:F2}");
+                return a;
             }
-
-            Console.WriteLine($"Total: {total:F2}");
+            else if (b > c)
+            {
+                return b;
+            }
+            else
+            {
+                return c;
+            }
         }
     }
 }
