@@ -7,25 +7,17 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            int a = 10;
-            bool isLessThanTen = a < 10;
-            bool isLessThanTwenty = a < 20;
-            bool isGreaterThanTen = a > 10;
-            bool isGreaterThanFive = a > 5;
-            bool isLessOrEqualToTen = a <= 10;
-            bool isGreaterOrEqualToTen = a >= 10;
-            bool isEqualsToTen = a == 10;
-            bool isDifferentOfTen = a != 10;
+            bool condition1 = 2 > 3 && 4 != 5;
+            bool condition2 = 2 > 3 || 4 != 5;
+            bool condition3 = !(2 > 3) && 4 != 5;
+            bool condition4 = 10 < 5;
+            bool condition5 = condition1 || condition2 && condition3;
 
-            Console.WriteLine($"a = {a}");
-            Console.WriteLine($"a < 10 ? {isLessThanTen}");
-            Console.WriteLine($"a < 20 ? {isLessThanTwenty}");
-            Console.WriteLine($"a > 10 ? {isGreaterThanTen}");
-            Console.WriteLine($"a > 5 ? {isGreaterThanFive}");
-            Console.WriteLine($"a <= 10 ? {isLessOrEqualToTen}");
-            Console.WriteLine($"a >= 10 ? {isGreaterOrEqualToTen}");
-            Console.WriteLine($"a == 10 ? {isEqualsToTen}");
-            Console.WriteLine($"a != 10 ? {isDifferentOfTen}");
+            Console.WriteLine($"2 > 3 && 4 != 5: {condition1}");
+            Console.WriteLine($"2 > 3 || 4 != 5: {condition2}");
+            Console.WriteLine($"!(2 > 3) && 4 != 5: {condition3}");
+            Console.WriteLine($"10 < 5: {condition4}");
+            Console.WriteLine($"condition1 || condition2 && condition3: {condition5}");
         }
     }
 }
