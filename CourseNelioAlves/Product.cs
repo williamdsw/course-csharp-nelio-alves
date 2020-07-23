@@ -22,10 +22,22 @@ namespace CourseNelioAlves
             return _price * _quantity;
         }
 
+        public void AddQuantityToStock (int quantity)
+        {
+            this._quantity += quantity;
+        }
+
+        public void RemoveQuantityFromStock (int quantity)
+        {
+            if (this._quantity != 0 || quantity != 0)
+            {
+                this._quantity -= quantity;
+            }
+        }
+
         public override string ToString()
         {
             return $"{_name}, $ {_price.ToString ("F2", CultureInfo.InvariantCulture)}, {_quantity} quantity(ies), total: {TotalInStock().ToString("F2", CultureInfo.InvariantCulture)}";
         }
-
     }
 }
