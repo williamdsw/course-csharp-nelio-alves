@@ -7,18 +7,18 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            Console.Write("Input an number: ");
-            double x = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            Console.Write("How many numbers your will input? ");
+            int number = int.Parse(Console.ReadLine());
+            int sum = 0;
 
-            while (x >= 0.0)
+            for (int i = 1; i <= number; i++)
             {
-                double sqrt = Math.Sqrt(x);
-                Console.WriteLine(sqrt.ToString("F3", CultureInfo.InvariantCulture));
-                Console.Write("Input another number: ");
-                x = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                Console.Write($"{i}# value: ");
+                int value = int.Parse(Console.ReadLine());
+                sum += value;
             }
 
-            Console.WriteLine($"{x} is a negative number!");
+            Console.WriteLine($"Sum: {sum}");
         }
     }
 }
