@@ -7,29 +7,18 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter 3 numbers: ");
-            int a = int.Parse(Console.ReadLine());
-            int b = int.Parse(Console.ReadLine());
-            int c = int.Parse(Console.ReadLine());
-            int result = WhoIsGreater(a, b, c);
+            Console.Write("Input an number: ");
+            double x = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
-            Console.WriteLine($"{result} is the greater");
-        }
+            while (x >= 0.0)
+            {
+                double sqrt = Math.Sqrt(x);
+                Console.WriteLine(sqrt.ToString("F3", CultureInfo.InvariantCulture));
+                Console.Write("Input another number: ");
+                x = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            }
 
-        private static int WhoIsGreater(int a, int b, int c)
-        {
-            if (a > b && a > c)
-            {
-                return a;
-            }
-            else if (b > c)
-            {
-                return b;
-            }
-            else
-            {
-                return c;
-            }
+            Console.WriteLine($"{x} is a negative number!");
         }
     }
 }
