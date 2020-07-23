@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace CourseNelioAlves
@@ -20,5 +21,11 @@ namespace CourseNelioAlves
         {
             return _price * _quantity;
         }
+
+        public override string ToString()
+        {
+            return $"{_name}, $ {_price.ToString ("F2", CultureInfo.InvariantCulture)}, {_quantity} quantity(ies), total: {TotalInStock().ToString("F2", CultureInfo.InvariantCulture)}";
+        }
+
     }
 }
