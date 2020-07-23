@@ -1,34 +1,33 @@
 ﻿using System;
 using System.Globalization;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace CourseNelioAlves
 {
     class Program
     {
+        static double PI = 3.14;
+
         static void Main(string[] args)
         {
-            Product product = new Product();
+            Console.Write("Input radius value: ");
+            double radius = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            double circumference = Circumference(radius);
+            double volume = Volume(radius);
 
-            Console.WriteLine("Input product's data: ");
-            Console.Write("Name: ");
-            product.Name = Console.ReadLine();
-            Console.Write("Price: ");
-            product.Price = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-            Console.Write("Stock quantity: ");
-            product.Quantity = int.Parse(Console.ReadLine());
+            Console.WriteLine("Circumference: {0}", circumference.ToString ("F2", CultureInfo.InvariantCulture));
+            Console.WriteLine("Volume: {0}", volume.ToString ("F2", CultureInfo.InvariantCulture));
+            Console.WriteLine("PI: {0}", PI.ToString ("F2", CultureInfo.InvariantCulture));
+        }
 
-            Console.WriteLine("Product's data: {0}", product);
-            Console.WriteLine("-------------------------------------------------");
+        private static double Circumference (double radius)
+        {
+            return 2.0 * PI * radius;
+        }
 
-            Console.Write("\nInput the quantity of products to be added to stock: ");
-            int quantity = int.Parse(Console.ReadLine());
-            product.AddQuantityToStock(quantity);
-            Console.WriteLine("Product's data: {0}", product);
-
-            Console.Write("\nInput the quantity of products to be removed to stock: ");
-            quantity = int.Parse(Console.ReadLine());
-            product.RemoveQuantityFromStock(quantity);
-            Console.WriteLine("Product's data: {0}", product);
+        private static double Volume (double radius)
+        {
+            return 4.0 / 3.0 * PI * Math.Pow(radius, 3);
         }
     }
 }
