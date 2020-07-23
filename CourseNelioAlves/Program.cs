@@ -7,32 +7,20 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            int x = 10;
-            
-            if (x < 5)
+            int local = 19; // needs to be initialized
+            double price = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            double total = 0;
+
+            Console.WriteLine($"Price: {price:F2}");
+
+            if (price >= 100.00)
             {
-                Console.WriteLine("Good Morning!");
-            }
-            else if (x > 5)
-            {
-                Console.WriteLine("Good Afternoon!");
-            }
-            else
-            {
-                Console.WriteLine("Good Night!");
+                double discount = price * 0.1f;
+                total = price - discount;
+                Console.WriteLine($"Discount: {discount:F2}");
             }
 
-            Console.WriteLine("Enter an integer number: ");
-            int number = int.Parse(Console.ReadLine());
-
-            if (number % 2 == 0)
-            {
-                Console.WriteLine($"{number} is even!");
-            }
-            else
-            {
-                Console.WriteLine($"{number} is odd!");
-            }
+            Console.WriteLine($"Total: {total:F2}");
         }
     }
 }
