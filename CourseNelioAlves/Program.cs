@@ -7,17 +7,32 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            bool condition1 = 2 > 3 && 4 != 5;
-            bool condition2 = 2 > 3 || 4 != 5;
-            bool condition3 = !(2 > 3) && 4 != 5;
-            bool condition4 = 10 < 5;
-            bool condition5 = condition1 || condition2 && condition3;
+            int x = 10;
+            
+            if (x < 5)
+            {
+                Console.WriteLine("Good Morning!");
+            }
+            else if (x > 5)
+            {
+                Console.WriteLine("Good Afternoon!");
+            }
+            else
+            {
+                Console.WriteLine("Good Night!");
+            }
 
-            Console.WriteLine($"2 > 3 && 4 != 5: {condition1}");
-            Console.WriteLine($"2 > 3 || 4 != 5: {condition2}");
-            Console.WriteLine($"!(2 > 3) && 4 != 5: {condition3}");
-            Console.WriteLine($"10 < 5: {condition4}");
-            Console.WriteLine($"condition1 || condition2 && condition3: {condition5}");
+            Console.WriteLine("Enter an integer number: ");
+            int number = int.Parse(Console.ReadLine());
+
+            if (number % 2 == 0)
+            {
+                Console.WriteLine($"{number} is even!");
+            }
+            else
+            {
+                Console.WriteLine($"{number} is odd!");
+            }
         }
     }
 }
