@@ -6,12 +6,11 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            int number = 10;
-            int result;
+            int x = 20;
+            object y = x;
+            int z = (int) y; // needs cast
 
-            // Calculator.Triplicate(ref number);
-            Calculator.Triplicate(number, out result);
-            Console.WriteLine($"origin: {number}, result: {result}");
+            Console.WriteLine($"x: {x}, y: {y}, z: {z}");
         }
     }
 }
