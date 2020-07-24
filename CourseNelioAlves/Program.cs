@@ -16,9 +16,11 @@ namespace CourseNelioAlves
             Console.Write("Quantity: ");
             int quantity = int.Parse(Console.ReadLine());
 
-            Product product = new Product(name, price, quantity);
-            // Product product = new Product (name, price);
-            // Product product = new Product ();
+            Product product = new Product {
+                Name = name,
+                Price = price,
+                Quantity = quantity
+            };
 
             Console.WriteLine("Product: {0}", product);
         }
