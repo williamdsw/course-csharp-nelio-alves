@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Globalization;
-using System.Linq;
 
 namespace CourseNelioAlves
 {
@@ -8,31 +6,19 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            Console.Write("Input the number of products: ");
-            int number = int.Parse(Console.ReadLine());
+            int sum1 = Calculator.Sum(1, 2);
+            int sum2 = Calculator.Sum(1, 2, 3);
+            int sum3 = Calculator.Sum(1, 2, 3, 4);
+            int sum4 = Calculator.Sum(new int[] { 1, 2, 3, 4, 5 }); // without params
+            int sum5 = Calculator.Sum(1, 2, 3, 4, 5);
+            int sum6 = Calculator.Sum(1, 2, 3, 4, 5, 6, 7, 8);
 
-            Product[] products = new Product[number];
-            double sum = 0.0;
-
-            for (int i = 0; i < number; i++)
-            {
-                Console.WriteLine($"{i + 1}# product data: ");
-                Console.Write("Name: ");
-                string name = Console.ReadLine();
-                Console.Write("Price: ");
-                double price = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-                Console.Write("Quantity: ");
-                int quantity = int.Parse(Console.ReadLine());
-
-                Product product = new Product(name, price, quantity);
-                products[i] = product;
-                sum += price;
-            }
-
-            double avg = (sum / number);
-
-            Console.WriteLine("-------------------");
-            Console.WriteLine("Average: {0}", avg.ToString("F2", CultureInfo.InvariantCulture));
+            Console.WriteLine($"sum1: {sum1}");
+            Console.WriteLine($"sum2: {sum2}");
+            Console.WriteLine($"sum3: {sum3}");
+            Console.WriteLine($"sum4: {sum4}");
+            Console.WriteLine($"sum5: {sum5}");
+            Console.WriteLine($"sum6: {sum6}");
         }
     }
 }
