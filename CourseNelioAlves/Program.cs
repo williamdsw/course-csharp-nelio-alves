@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace CourseNelioAlves
 {
@@ -7,64 +6,55 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            List<string> teams = new List<string>();
+            Console.WriteLine("Multiplication Table");
+            Console.Write("Input quantity of numbers: ");
+            int quantity = int.Parse(Console.ReadLine()); 
+            Console.Write("Input the number of ocorrences: ");
+            int ocorrences = int.Parse(Console.ReadLine());
 
-            teams.Add("Real Madrid");
-            teams.AddRange(new string[] { "Barcelona", "Manchester City", "Atalanta", "Manchester United" });
-            teams.Insert(1, "Chelsea");
-
-            foreach (string team in teams)
+            int[,] values = new int[quantity, ocorrences];
+            for (int row = 0; row < quantity; row++)
             {
-                Console.WriteLine(team);
+                for (int col = 0; col < ocorrences; col++)
+                {
+                    values[row, col] = row * col;
+                }
             }
 
-            Console.WriteLine("---------------------------");
-            Console.WriteLine($"List count: {teams.Count}");
-
-            string firstWithM = teams.Find(team => team.StartsWith("M"));
-            int firstIndex = teams.FindIndex(team => team.StartsWith("M"));
-            Console.WriteLine($"Find first with M: {firstWithM}");
-            Console.WriteLine($"Find index first with M: {firstIndex}");
-
-            string lastWithM = teams.FindLast(team => team.StartsWith("M"));
-            int lastIndex = teams.FindLastIndex(team => team.StartsWith("M"));
-            Console.WriteLine($"Find last with M: {lastWithM}");
-            Console.WriteLine($"Find last index first with M: {lastIndex}");
-
-            Console.WriteLine("---------------------------");
-            List<string> endsWithAList = teams.FindAll(team => team.EndsWith("a"));
-            foreach (var team in endsWithAList)
+            // Header
+            Console.Write("\t");
+            for (int i = 0; i < ocorrences; i++)
             {
-                Console.WriteLine(team);
+                Console.Write($" { i } ");
             }
 
-            Console.WriteLine("---------------------------");
-            endsWithAList.Remove("Chelsea");
-            foreach (var team in endsWithAList)
+            Console.WriteLine('\n');
+            for (int row = 0; row < values.GetLength(0); row++)
             {
-                Console.WriteLine(team);
+                // Column count
+                Console.Write($" {row}: \t");
+
+                // Data
+                for (int col = 0; col < values.GetLength(1); col++)
+                {
+                    Console.Write($" {values[row, col]} ");
+                }
+
+                Console.WriteLine();
             }
 
-            Console.WriteLine("---------------------------");
-            teams.RemoveAll(team => team.Contains(" "));
-            foreach (string team in teams)
+            Console.WriteLine($"\nRank: {values.Rank}");
+            Console.WriteLine($"Length: {values.Length}");
+            Console.WriteLine($"Length of 0: {values.GetLength(0)}");
+            Console.WriteLine($"Length of 1: {values.GetLength(1)}");
+            Console.WriteLine("---------------------------------------------");
+
+            Console.WriteLine("Main diagonal: ");
+            for (int i = 0; i < quantity; i++)
             {
-                Console.WriteLine(team);
+                Console.Write($" {values[i, i]} ");
             }
 
-            Console.WriteLine("---------------------------");
-            endsWithAList.RemoveAt(0);
-            foreach (string team in endsWithAList)
-            {
-                Console.WriteLine(team);
-            }
-
-            Console.WriteLine("---------------------------");
-            teams.RemoveRange(1, 2);
-            foreach (string team in teams)
-            {
-                Console.WriteLine(team);
-            }
         }
     }
 }
