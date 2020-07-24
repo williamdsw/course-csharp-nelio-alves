@@ -8,21 +8,20 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Input product data: ");
+            Console.WriteLine("Input employee data: ");
             Console.Write("Name: ");
             string name = Console.ReadLine();
-            Console.Write("Price: ");
-            double price = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-            Console.Write("Quantity: ");
-            int quantity = int.Parse(Console.ReadLine());
+            Console.Write("Genre: ");
+            char genre = char.Parse(Console.ReadLine());
+            Console.Write("Age: ");
+            int age = int.Parse(Console.ReadLine());
 
-            Product product = new Product {
-                Name = name,
-                Price = price,
-                Quantity = quantity
-            };
+            Employee employee = new Employee();
+            employee.SetName(name);
+            employee.SetGenre(genre);
+            employee.SetAge(age);
 
-            Console.WriteLine("Product: {0}", product);
+            Console.WriteLine("Employee: {0}", employee);
         }
     }
 }
