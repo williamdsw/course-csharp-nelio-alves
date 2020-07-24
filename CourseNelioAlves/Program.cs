@@ -17,6 +17,9 @@ namespace CourseNelioAlves
             int quantity = int.Parse(Console.ReadLine());
 
             Product product = new Product(name, price, quantity);
+            // Product product = new Product (name, price);
+            // Product product = new Product ();
+
             Console.WriteLine("Product: {0}", product);
         }
     }
