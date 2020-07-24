@@ -8,22 +8,31 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            Console.Write("Input the number of persons: ");
+            Console.Write("Input the number of products: ");
             int number = int.Parse(Console.ReadLine());
 
-            double[] heights = new double[number];
+            Product[] products = new Product[number];
+            double sum = 0.0;
 
             for (int i = 0; i < number; i++)
             {
-                Console.Write($"Input height for {i + 1} person: ");
-                double height = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-                heights[i] = height;
+                Console.WriteLine($"{i + 1}# product data: ");
+                Console.Write("Name: ");
+                string name = Console.ReadLine();
+                Console.Write("Price: ");
+                double price = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                Console.Write("Quantity: ");
+                int quantity = int.Parse(Console.ReadLine());
+
+                Product product = new Product(name, price, quantity);
+                products[i] = product;
+                sum += price;
             }
 
+            double avg = (sum / number);
+
             Console.WriteLine("-------------------");
-            Console.WriteLine("Min: {0}", heights.Min().ToString ("F2", CultureInfo.InvariantCulture));
-            Console.WriteLine("Max: {0}", heights.Max().ToString("F2", CultureInfo.InvariantCulture));
-            Console.WriteLine("Average: {0}", heights.Average().ToString("F2", CultureInfo.InvariantCulture));
+            Console.WriteLine("Average: {0}", avg.ToString("F2", CultureInfo.InvariantCulture));
         }
     }
 }
