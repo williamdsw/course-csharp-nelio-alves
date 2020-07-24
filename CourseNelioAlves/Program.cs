@@ -8,16 +8,16 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            Console.Write("Input radius value: ");
-            double radius = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-            double circumference = Calculator.Circumference(radius);
-            double volume = Calculator.Volume(radius);
+            Console.WriteLine("Input product data: ");
+            Console.Write("Name: ");
+            string name = Console.ReadLine();
+            Console.Write("Price: ");
+            double price = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            Console.Write("Quantity: ");
+            int quantity = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Circumference: {0}", circumference.ToString ("F2", CultureInfo.InvariantCulture));
-            Console.WriteLine("Volume: {0}", volume.ToString ("F2", CultureInfo.InvariantCulture));
-            Console.WriteLine("PI: {0}", Math.PI.ToString ("F2", CultureInfo.InvariantCulture));
+            Product product = new Product(name, price, quantity);
+            Console.WriteLine("Product: {0}", product);
         }
-
-        
     }
 }

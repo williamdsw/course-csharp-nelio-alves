@@ -12,6 +12,12 @@ namespace CourseNelioAlves
         private int _quantity;
 
         public Product() { }
+        public Product(string name, double price, int quantity)
+        {
+            this._name = name;
+            this._price = price;
+            this._quantity = quantity;
+        }
 
         public string Name { get => this._name; set => this._name = value; } 
         public double Price { get => this._price; set => this._price = value; } 
