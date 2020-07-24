@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 
 namespace CourseNelioAlves
 {
@@ -7,12 +6,35 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            // doesn't need to be initialized to be used, but needs to print out
-            Point point = new Point();
-            point.X = 10;
-            point.X = 20;
+            Nullable<double> x = null;
+            double? y = 10;
+            double z = x ?? 5; // checks if x is null or sets default value
 
-            Console.WriteLine("Point: {0}", point);
+            Console.WriteLine(x.GetValueOrDefault());
+            Console.WriteLine(y.GetValueOrDefault());
+
+            Console.WriteLine(x.HasValue);
+            Console.WriteLine(y.HasValue);
+
+            if (x.HasValue)
+            {
+                Console.WriteLine(x.Value);
+            }
+            else
+            {
+                Console.WriteLine("x is null");
+            }
+            
+            if (y.HasValue)
+            {
+                Console.WriteLine(y.Value);
+            }
+            else
+            {
+                Console.WriteLine("y is null");
+            }
+
+            Console.WriteLine(z);
         }
     }
 }
