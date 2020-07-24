@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Linq;
 
 namespace CourseNelioAlves
 {
@@ -6,35 +8,22 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            Nullable<double> x = null;
-            double? y = 10;
-            double z = x ?? 5; // checks if x is null or sets default value
+            Console.Write("Input the number of persons: ");
+            int number = int.Parse(Console.ReadLine());
 
-            Console.WriteLine(x.GetValueOrDefault());
-            Console.WriteLine(y.GetValueOrDefault());
+            double[] heights = new double[number];
 
-            Console.WriteLine(x.HasValue);
-            Console.WriteLine(y.HasValue);
-
-            if (x.HasValue)
+            for (int i = 0; i < number; i++)
             {
-                Console.WriteLine(x.Value);
-            }
-            else
-            {
-                Console.WriteLine("x is null");
-            }
-            
-            if (y.HasValue)
-            {
-                Console.WriteLine(y.Value);
-            }
-            else
-            {
-                Console.WriteLine("y is null");
+                Console.Write($"Input height for {i + 1} person: ");
+                double height = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                heights[i] = height;
             }
 
-            Console.WriteLine(z);
+            Console.WriteLine("-------------------");
+            Console.WriteLine("Min: {0}", heights.Min().ToString ("F2", CultureInfo.InvariantCulture));
+            Console.WriteLine("Max: {0}", heights.Max().ToString("F2", CultureInfo.InvariantCulture));
+            Console.WriteLine("Average: {0}", heights.Average().ToString("F2", CultureInfo.InvariantCulture));
         }
     }
 }
