@@ -6,11 +6,11 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            int x = 20;
-            object y = x;
-            int z = (int) y; // needs cast
-
-            Console.WriteLine($"x: {x}, y: {y}, z: {z}");
+            string[] names = new string[] { "Maria", "Bob", "Alex" };
+            foreach (string name in names) 
+            {
+                Console.WriteLine(name);
+            }
         }
     }
 }
