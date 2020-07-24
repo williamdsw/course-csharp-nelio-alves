@@ -15,37 +15,22 @@ namespace CourseNelioAlves
             _age = age;
         }
 
-        public string GetName ()
+        public string Name
         {
-            return _name;
+            get { return _name; }
+            set { _name = value;  }
         }
 
-        public void SetName (string name)
+        public char Genre
         {
-            if (name != null && name.Length > 1)
-            {
-                _name = name;
-            }
+            get { return _genre; }
+            set { _genre = value; }
         }
 
-        public char GetGenre ()
+        public int Age
         {
-            return _genre;
-        }
-
-        public void SetGenre (char genre)
-        {
-            _genre = genre;
-        }
-
-        public int GetAge ()
-        {
-            return _age;
-        }
-
-        public void SetAge (int age)
-        {
-            _age = age;
+            get { return _age; }
+            set { _age = value; }
         }
 
         public override string ToString()

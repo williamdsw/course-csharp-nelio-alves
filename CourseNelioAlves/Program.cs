@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace CourseNelioAlves
 {
@@ -17,9 +16,9 @@ namespace CourseNelioAlves
             int age = int.Parse(Console.ReadLine());
 
             Employee employee = new Employee();
-            employee.SetName(name);
-            employee.SetGenre(genre);
-            employee.SetAge(age);
+            employee.Name = name;
+            employee.Genre = genre;
+            employee.Age = age;
 
             Console.WriteLine("Employee: {0}", employee);
         }
