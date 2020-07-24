@@ -7,49 +7,45 @@ namespace CourseNelioAlves
 {
     class Product
     {
-        private string _name;
-        private double _price;
-        private int _quantity;
+        public string Name { get; set; }
+        public double Price { get; set; }
+        public int Quantity { get; set; }
 
         public Product() { }
 
-        public Product(String name, double price) : this()
+        public Product(string name, double price) : this()
         {
-            this._name = name;
-            this._price = price;
-            this._quantity = 0;
+            Name = name;
+            Price = price;
+            Quantity = 0;
         }
 
         public Product(string name, double price, int quantity) : this(name, price)
         {
-            this._quantity = quantity;
+            Quantity = quantity;
         }
-
-        public string Name { get => this._name; set => this._name = value; } 
-        public double Price { get => this._price; set => this._price = value; } 
-        public int Quantity { get => this._quantity; set => this._quantity = value; } 
 
         public double TotalInStock()
         {
-            return _price * _quantity;
+            return Price * Quantity;
         }
 
         public void AddQuantityToStock (int quantity)
         {
-            this._quantity += quantity;
+            this.Quantity += quantity;
         }
 
         public void RemoveQuantityFromStock (int quantity)
         {
-            if (this._quantity != 0 || quantity != 0)
+            if (Quantity != 0 || quantity != 0)
             {
-                this._quantity -= quantity;
+                Quantity -= quantity;
             }
         }
 
         public override string ToString()
         {
-            return $"{_name}, $ {_price.ToString ("F2", CultureInfo.InvariantCulture)}, {_quantity} quantity(ies), total: {TotalInStock().ToString("F2", CultureInfo.InvariantCulture)}";
+            return $"{Name}, $ {Price.ToString ("F2", CultureInfo.InvariantCulture)}, {Quantity} quantity(ies), total: {TotalInStock().ToString("F2", CultureInfo.InvariantCulture)}";
         }
     }
 }
