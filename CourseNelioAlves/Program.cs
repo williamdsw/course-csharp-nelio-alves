@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CourseNelioAlves
 {
@@ -6,11 +7,8 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            string[] names = new string[] { "Maria", "Bob", "Alex" };
-            foreach (string name in names) 
-            {
-                Console.WriteLine(name);
-            }
+            List<string> firstList = new List<string>();
+            List<string> secondList = new List<string>() { "Maria", "Alex" };
         }
     }
 }
