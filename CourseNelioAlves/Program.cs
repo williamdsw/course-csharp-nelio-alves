@@ -7,42 +7,40 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            DateTime birthdate = new DateTime(1994, 10, 2, 19, 15, 0, 500);
-            string formatted = birthdate.ToString("yyyy-MM-dd HH:mm:ss.fff");
-            DateTime future = birthdate.AddYears(3);
-            DateTime now = DateTime.Now;
-            DateTime sevenDays = now.AddDays(7);
-            TimeSpan difference = now.Subtract(birthdate);
+            TimeSpan min = TimeSpan.MinValue;
+            TimeSpan max = TimeSpan.MaxValue;
+            TimeSpan zero = TimeSpan.Zero;
+            TimeSpan timeSpan = new TimeSpan(10, 19, 15, 0, 500);
+            TimeSpan another = new TimeSpan(1, 30, 10);
+            TimeSpan other = new TimeSpan(0, 10, 5);
+            TimeSpan sum = another.Add(other);
+            TimeSpan substract = another.Subtract(other);
+            TimeSpan multi = other.Multiply(2.0);
+            TimeSpan div = other.Divide(2.0);
 
-            Console.WriteLine(birthdate);
-            Console.WriteLine($"Date: {birthdate.Date}");
-            Console.WriteLine($"Day: {birthdate.Day}");
-            Console.WriteLine($"Day Of Week: {birthdate.DayOfWeek}");
-            Console.WriteLine($"Day Of Year: {birthdate.DayOfYear}");
-            Console.WriteLine($"Hour: {birthdate.Hour}");
-            Console.WriteLine($"Kind: {birthdate.Kind}");
-            Console.WriteLine($"Millisecond: {birthdate.Millisecond}");
-            Console.WriteLine($"Minute: {birthdate.Minute}");
-            Console.WriteLine($"Month: {birthdate.Month}");
-            Console.WriteLine($"Seconds: {birthdate.Second}");
-            Console.WriteLine($"Ticks: {birthdate.Ticks}");
-            Console.WriteLine($"Time Of Day: {birthdate.TimeOfDay}");
-            Console.WriteLine($"Year: {birthdate.Year}");
-            Console.WriteLine("----------------------------------------");
-            Console.WriteLine(birthdate.ToLongDateString());
-            Console.WriteLine(birthdate.ToLongTimeString());
-            Console.WriteLine(birthdate.ToShortDateString());
-            Console.WriteLine(birthdate.ToShortTimeString());
-            Console.WriteLine(birthdate.ToLocalTime());
-            Console.WriteLine(birthdate.ToUniversalTime());
-            Console.WriteLine(formatted);
-            Console.WriteLine("----------------------------------------");
-            Console.WriteLine(future);
-            Console.WriteLine("----------------------------------------");
-            Console.WriteLine(now);
-            Console.WriteLine(sevenDays);
-            Console.WriteLine("----------------------------------------");
-            Console.WriteLine(difference);
+            Console.WriteLine($"Min: {min}");
+            Console.WriteLine($"Max: {max}");
+            Console.WriteLine($"Zero: {zero}");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine(timeSpan);
+            Console.WriteLine($"Days: {timeSpan.Days}");
+            Console.WriteLine($"Hours: {timeSpan.Hours}");
+            Console.WriteLine($"Minutes: {timeSpan.Minutes}");
+            Console.WriteLine($"Milliseconds: {timeSpan.Milliseconds}");
+            Console.WriteLine($"Seconds: {timeSpan.Seconds}");
+            Console.WriteLine($"Ticks: {timeSpan.Ticks}"); 
+            Console.WriteLine($"TotalDays: {timeSpan.TotalDays}");
+            Console.WriteLine($"TotalHours: {timeSpan.TotalHours}");
+            Console.WriteLine($"TotalMinutes: {timeSpan.TotalMinutes}");
+            Console.WriteLine($"TotalMilliseconds: {timeSpan.TotalMilliseconds}");
+            Console.WriteLine($"TotalSeconds: {timeSpan.TotalSeconds}");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine(another);
+            Console.WriteLine(other);
+            Console.WriteLine($"sum: {sum}");
+            Console.WriteLine($"difference: {substract}");
+            Console.WriteLine($"multiply: {multi}");
+            Console.WriteLine($"division: {div}");
         }
     }
 }
