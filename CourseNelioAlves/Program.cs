@@ -7,40 +7,28 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            TimeSpan min = TimeSpan.MinValue;
-            TimeSpan max = TimeSpan.MaxValue;
-            TimeSpan zero = TimeSpan.Zero;
-            TimeSpan timeSpan = new TimeSpan(10, 19, 15, 0, 500);
-            TimeSpan another = new TimeSpan(1, 30, 10);
-            TimeSpan other = new TimeSpan(0, 10, 5);
-            TimeSpan sum = another.Add(other);
-            TimeSpan substract = another.Subtract(other);
-            TimeSpan multi = other.Multiply(2.0);
-            TimeSpan div = other.Divide(2.0);
+            DateTime birthdate = new DateTime(1994, 10, 2, 19, 15, 0);
+            DateTime birthdateLocal = new DateTime(1994, 10, 2, 19, 15, 0, DateTimeKind.Local);
+            DateTime birthdateUtc = new DateTime(1994, 10, 2, 19, 15, 0, DateTimeKind.Utc);
+            DateTime other = DateTime.Parse("1994-10-02 19:15:00");
+            DateTime another = DateTime.Parse("1994-10-02T19:15:00Z");
 
-            Console.WriteLine($"Min: {min}");
-            Console.WriteLine($"Max: {max}");
-            Console.WriteLine($"Zero: {zero}");
-            Console.WriteLine("---------------------------------");
-            Console.WriteLine(timeSpan);
-            Console.WriteLine($"Days: {timeSpan.Days}");
-            Console.WriteLine($"Hours: {timeSpan.Hours}");
-            Console.WriteLine($"Minutes: {timeSpan.Minutes}");
-            Console.WriteLine($"Milliseconds: {timeSpan.Milliseconds}");
-            Console.WriteLine($"Seconds: {timeSpan.Seconds}");
-            Console.WriteLine($"Ticks: {timeSpan.Ticks}"); 
-            Console.WriteLine($"TotalDays: {timeSpan.TotalDays}");
-            Console.WriteLine($"TotalHours: {timeSpan.TotalHours}");
-            Console.WriteLine($"TotalMinutes: {timeSpan.TotalMinutes}");
-            Console.WriteLine($"TotalMilliseconds: {timeSpan.TotalMilliseconds}");
-            Console.WriteLine($"TotalSeconds: {timeSpan.TotalSeconds}");
-            Console.WriteLine("---------------------------------");
-            Console.WriteLine(another);
-            Console.WriteLine(other);
-            Console.WriteLine($"sum: {sum}");
-            Console.WriteLine($"difference: {substract}");
-            Console.WriteLine($"multiply: {multi}");
-            Console.WriteLine($"division: {div}");
+            PrintDateProperties(birthdate);
+            PrintDateProperties(birthdateLocal);
+            PrintDateProperties(birthdateUtc);
+            PrintDateProperties(other);
+            PrintDateProperties(another);
+        }
+
+        private static void PrintDateProperties (DateTime dateTime)
+        {
+            Console.WriteLine($"Birthdate: {dateTime}");
+            Console.WriteLine($"Kind: {dateTime.Kind}");
+            Console.WriteLine($"Local: {dateTime.ToLocalTime()}");
+            Console.WriteLine($"Universal: {dateTime.ToUniversalTime()}");
+            Console.WriteLine($"ISO 8601 Wrong: {dateTime.ToString("yyyy-MM-ddTHH:mm:ssZ")}");
+            Console.WriteLine($"ISO 8601 Right: {dateTime.ToUniversalTime ().ToString("yyyy-MM-ddTHH:mm:ssZ")}");
+            Console.WriteLine();
         }
     }
 }
