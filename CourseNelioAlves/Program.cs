@@ -7,22 +7,18 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            DateTime now = DateTime.Now;
-            DateTime birthdate = new DateTime(1994, 10, 2);
-            DateTime today = DateTime.Today;
-            DateTime utcNow = DateTime.UtcNow;
-            DateTime custom = DateTime.Parse("1994-10-02 19:15:00");
-            DateTime otherCustom = DateTime.Parse("02/10/1994 19:15:00");
-            DateTime exact = DateTime.ParseExact("1994-10-02", "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            DateTime begin = new DateTime(1994, 10, 2);
+            DateTime end = new DateTime(2010, 10, 2);
 
-            Console.WriteLine(now);
-            Console.WriteLine(birthdate);
-            Console.WriteLine(today);
-            Console.WriteLine(utcNow);
-            Console.WriteLine(custom);
-            Console.WriteLine(otherCustom);
-            Console.WriteLine(exact);
-            Console.WriteLine($"Now Ticks: {now.Ticks}");
+            TimeSpan timeSpan = new TimeSpan(0, 1, 30);
+            TimeSpan duration = new TimeSpan(end.Ticks - begin.Ticks);
+            TimeSpan fromDays = TimeSpan.FromDays(1.5);
+
+            Console.WriteLine(timeSpan);
+            Console.WriteLine($"Ticks: {timeSpan.Ticks}");
+            Console.WriteLine(duration);
+            Console.WriteLine($"Ticks: {duration.Ticks}");
+            Console.WriteLine(fromDays);
         }
     }
 }
