@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace CourseNelioAlves
 {
@@ -6,37 +7,22 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            string phrase = "   I see the bad moon on rising. I see trouble on the way.   ";
-            string upper = phrase.ToUpper();
-            string lower = phrase.ToLower();
-            int length = phrase.Length;
-            string trim = phrase.Trim();
-            int firstIndexOf = phrase.IndexOf("see");
-            int lastIndexOf = phrase.LastIndexOf("see");
-            string substring = phrase.Substring(10);
-            string otherSubstring = phrase.Substring(3, 10);
-            string replace = phrase.Replace("see", "saw");
-            bool nullOrEmpty = string.IsNullOrEmpty(phrase);
-            bool nullOrWhiteSpace = string.IsNullOrWhiteSpace(phrase);
+            DateTime now = DateTime.Now;
+            DateTime birthdate = new DateTime(1994, 10, 2);
+            DateTime today = DateTime.Today;
+            DateTime utcNow = DateTime.UtcNow;
+            DateTime custom = DateTime.Parse("1994-10-02 19:15:00");
+            DateTime otherCustom = DateTime.Parse("02/10/1994 19:15:00");
+            DateTime exact = DateTime.ParseExact("1994-10-02", "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
-            Console.WriteLine(phrase);
-            Console.WriteLine(upper);
-            Console.WriteLine(lower);
-            Console.WriteLine($"Length: {length}");
-            Console.WriteLine(trim);
-            Console.WriteLine($"IndexOf(see): {firstIndexOf}");
-            Console.WriteLine($"LastIndexOf(see): {lastIndexOf}");
-            Console.WriteLine($"Substring(3): {substring}");
-            Console.WriteLine($"Substring(3, 10): {otherSubstring}");
-            Console.WriteLine(replace);
-            Console.WriteLine($"IsNullOrEmpty: {nullOrEmpty}");
-            Console.WriteLine($"IsNullOrWhitespace: {nullOrWhiteSpace}");
-            Console.WriteLine("------------------------------------------");
-
-            foreach (char c in phrase.Trim(' '))
-            {
-                Console.Write($" {c} ");
-            }
+            Console.WriteLine(now);
+            Console.WriteLine(birthdate);
+            Console.WriteLine(today);
+            Console.WriteLine(utcNow);
+            Console.WriteLine(custom);
+            Console.WriteLine(otherCustom);
+            Console.WriteLine(exact);
+            Console.WriteLine($"Now Ticks: {now.Ticks}");
         }
     }
 }
