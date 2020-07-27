@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CourseNelioAlves.Entities;
+using CourseNelioAlves.Enums;
+using System;
 using System.Globalization;
 
 namespace CourseNelioAlves
@@ -7,28 +9,18 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            DateTime birthdate = new DateTime(1994, 10, 2, 19, 15, 0);
-            DateTime birthdateLocal = new DateTime(1994, 10, 2, 19, 15, 0, DateTimeKind.Local);
-            DateTime birthdateUtc = new DateTime(1994, 10, 2, 19, 15, 0, DateTimeKind.Utc);
-            DateTime other = DateTime.Parse("1994-10-02 19:15:00");
-            DateTime another = DateTime.Parse("1994-10-02T19:15:00Z");
+            Order order = new Order
+            {
+                Id = 1, Moment = DateTime.Now, Status = Enums.OrderStatus.PendingPayment
+            };
 
-            PrintDateProperties(birthdate);
-            PrintDateProperties(birthdateLocal);
-            PrintDateProperties(birthdateUtc);
-            PrintDateProperties(other);
-            PrintDateProperties(another);
-        }
+            Console.WriteLine(order);
 
-        private static void PrintDateProperties (DateTime dateTime)
-        {
-            Console.WriteLine($"Birthdate: {dateTime}");
-            Console.WriteLine($"Kind: {dateTime.Kind}");
-            Console.WriteLine($"Local: {dateTime.ToLocalTime()}");
-            Console.WriteLine($"Universal: {dateTime.ToUniversalTime()}");
-            Console.WriteLine($"ISO 8601 Wrong: {dateTime.ToString("yyyy-MM-ddTHH:mm:ssZ")}");
-            Console.WriteLine($"ISO 8601 Right: {dateTime.ToUniversalTime ().ToString("yyyy-MM-ddTHH:mm:ssZ")}");
-            Console.WriteLine();
+            string currentStatus = OrderStatus.Processing.ToString();
+            OrderStatus otherStatus = Enum.Parse<OrderStatus>("Delivered");
+
+            Console.WriteLine($"Current Status: {currentStatus}");
+            Console.WriteLine($"Other Status: {otherStatus}");
         }
     }
 }
