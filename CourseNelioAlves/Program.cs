@@ -10,47 +10,32 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            Console.Write("Enter department's name: ");
-            string departmentName = Console.ReadLine();
-
-            Console.WriteLine("Enter worker data:");
-            Console.Write("Name:");
-            string name = Console.ReadLine();
-            Console.Write("Level (Junior/MidLevel/Senior):");
-            WorkerLevel level = Enum.Parse<WorkerLevel>(Console.ReadLine());
-            Console.Write("Base Salary:");
-            double baseSalary = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-
-            Departament departament = new Departament(departmentName);
-            Worker worker = new Worker(name, level, baseSalary, departament);
-
-            Console.Write("How many contracts to this worker? ");
-            int numberOfContracts = int.Parse(Console.ReadLine());
-
-            for (int i = 1; i <= numberOfContracts; i++)
+            Post post1 = new Post() 
             {
-                Console.WriteLine($"Enter {i} contract data:");
-                Console.Write("Date (DD/MM/YYYY): ");
-                DateTime dateTime = DateTime.Parse(Console.ReadLine());
-                Console.Write("Value per hour: ");
-                double valuePerHour = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-                Console.Write("Duration (hours): ");
-                int hours = int.Parse(Console.ReadLine());
+                Moment = DateTime.Parse("21/06/2018 13:05:44"),
+                Title = "Traveling to New Zealand",
+                Content = "I'm going to visit this wonderful country!",
+                Likes = 12
+            };
+            Comment c1 = new Comment("Have a nice trip!");
+            Comment c2 = new Comment("Wow that's awesome!");
+            post1.AddComment(c1);
+            post1.AddComment(c2);
+            
+            Post post2 = new Post() 
+            {
+                Moment = DateTime.Parse("28/07/2018 23:14:19"),
+                Title = "Good night guys",
+                Content = "See you tomorrow!",
+                Likes = 5
+            };
+            Comment c3 = new Comment("Good night");
+            Comment c4 = new Comment("May the Force be with you");
+            post2.AddComment(c3);
+            post2.AddComment(c4);
 
-                HourContract contract = new HourContract(dateTime, valuePerHour, hours);
-                worker.AddContract(contract);
-            }
-
-            Console.Write("\nEnter month and year to calculate income (MM/YYYY): ");
-            string[] incomeDate = Console.ReadLine().Split("/");
-            int month = int.Parse(incomeDate[0]);
-            int year = int.Parse(incomeDate[1]);
-            double income = worker.Income(year, month);
-
-            Console.WriteLine("");
-            Console.WriteLine($"Name: {worker.Name}");
-            Console.WriteLine($"Department: {worker.Departament.Name}");
-            Console.WriteLine($"Income for: {income.ToString ("F2", CultureInfo.InvariantCulture)}");
+            Console.WriteLine(post1);
+            Console.WriteLine(post2);
         }
     }
 }
