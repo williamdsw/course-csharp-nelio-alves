@@ -1,4 +1,7 @@
 ﻿
+using System;
+using System.Text;
+
 namespace CourseNelioAlves.Entities
 {
     public class Account
@@ -29,6 +32,16 @@ namespace CourseNelioAlves.Entities
         public void Deposit(double amount)
         {
             Balance += amount;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("Account");
+            builder.AppendLine($"Number: {Number}");
+            builder.AppendLine($"Holder: {Holder}");
+            builder.AppendLine($"Balance: {Balance.ToString("F2")}");
+            return builder.ToString();
         }
     }
 }

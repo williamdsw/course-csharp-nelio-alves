@@ -1,31 +1,29 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace CourseNelioAlves.Entities
 {
-    public class BusinessAccount : Account
+    public class SavingsAccount : Account
     {
         // PROPERTIES
 
-        public double LoanLimit { get; set; }
+        public double InterestRate { get; set; }
 
-        // CONSTRUCTORS
+        // CONSTRUCTOR
 
-        public BusinessAccount() { }
-        public BusinessAccount(int number, string holder, double balance, double loanLimit) 
+        public SavingsAccount() { }
+        public SavingsAccount(int number, string holder, double balance, double interestRate) 
             : base(number, holder, balance)
         {
-            LoanLimit = loanLimit;
+            InterestRate = interestRate;
         }
 
         // FUNCTIONS
 
-        public void Loan(double amount)
+        public void UpdateBalance()
         {
-            if (amount <= LoanLimit)
-            {
-                Balance += amount;
-            }
+            Balance += (Balance * InterestRate);
         }
 
         public override string ToString()
@@ -35,7 +33,7 @@ namespace CourseNelioAlves.Entities
             builder.AppendLine($"Number: {Number}");
             builder.AppendLine($"Holder: {Holder}");
             builder.AppendLine($"Balance: {Balance.ToString("F2")}");
-            builder.AppendLine($"Loan Limit: {LoanLimit.ToString("F2")}");
+            builder.AppendLine($"Interest Rate: {InterestRate.ToString("F2")}");
             return builder.ToString();
         }
     }
