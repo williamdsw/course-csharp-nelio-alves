@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 
 namespace CourseNelioAlves.Entities
 {
+    // public sealed class SavingsAccount : Account
     public class SavingsAccount : Account
     {
         // PROPERTIES
@@ -21,7 +20,8 @@ namespace CourseNelioAlves.Entities
 
         // FUNCTIONS
 
-        public override void Withdraw(double amount)
+        // sealed: this function cannot be overrided again
+        public sealed override void Withdraw(double amount)
         {
             Balance -= amount;
         }
