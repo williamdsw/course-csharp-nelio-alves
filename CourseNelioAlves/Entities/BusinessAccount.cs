@@ -20,6 +20,12 @@ namespace CourseNelioAlves.Entities
 
         // FUNCTIONS
 
+        public override void Withdraw(double amount)
+        {
+            base.Withdraw(amount);
+            Balance -= 2.0;
+        }
+
         public void Loan(double amount)
         {
             if (amount <= LoanLimit)

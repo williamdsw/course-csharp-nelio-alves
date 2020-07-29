@@ -21,6 +21,11 @@ namespace CourseNelioAlves.Entities
 
         // FUNCTIONS
 
+        public override void Withdraw(double amount)
+        {
+            Balance -= amount;
+        }
+
         public void UpdateBalance()
         {
             Balance += (Balance * InterestRate);
@@ -29,7 +34,7 @@ namespace CourseNelioAlves.Entities
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendLine("BusinessAccount");
+            builder.AppendLine("SavingsAccount");
             builder.AppendLine($"Number: {Number}");
             builder.AppendLine($"Holder: {Holder}");
             builder.AppendLine($"Balance: {Balance.ToString("F2")}");
