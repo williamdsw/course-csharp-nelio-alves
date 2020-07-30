@@ -1,5 +1,7 @@
 ﻿using CourseNelioAlves.Entities;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 
 namespace CourseNelioAlves
 {
@@ -7,17 +9,39 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            Account account1 = new Account(1001, "Alex", 500.00);
-            Account account2 = new SavingsAccount(1002, "Maria", 500.00, 0.01);
-            Account account3 = new BusinessAccount(1003, "John", 500.00, 100.00);
+            List<Employee> employees = new List<Employee>();
 
-            account1.Withdraw(10.0);
-            account2.Withdraw(10.0);
-            account3.Withdraw(10.0);
+            Console.Write("Enter the number of employees: ");
+            int numberOfEmployees = int.Parse(Console.ReadLine());
+            for (int i = 0; i < numberOfEmployees; i++)
+            {
+                Console.WriteLine($"Employee #{i + 1} data:");
+                Console.Write("Outsourced (y/n) ? ");
+                char outsourced = char.Parse(Console.ReadLine());
+                Console.Write("Name: ");
+                string name = Console.ReadLine();
+                Console.Write("Hours: ");
+                int hours = int.Parse(Console.ReadLine());
+                Console.Write("Value per hour: ");
+                double valuePerHour = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
-            Console.WriteLine(account1);
-            Console.WriteLine(account2);
-            Console.WriteLine(account3);
+                if (outsourced == 'y')
+                {
+                    Console.Write("Additional charge: ");
+                    double additionalCharge = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                    employees.Add(new OutsourcedEmployee(name, hours, valuePerHour, additionalCharge));
+                }
+                else
+                {
+                    employees.Add(new Employee(name, hours, valuePerHour));
+                }
+            }
+
+            Console.WriteLine("\nPAYMENTS");
+            foreach(Employee employee in employees)
+            {
+                Console.WriteLine($"{employee.Name} - {employee.Payment().ToString("F2", CultureInfo.InvariantCulture)}");
+            }
         }
     }
 }

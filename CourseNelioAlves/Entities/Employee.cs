@@ -1,23 +1,23 @@
 ﻿
 namespace CourseNelioAlves
 {
-    class Employee
+    public class Employee
     {
         public string Name { get; set; }
-        public char Genre { get; set; }
-        public int Age { get; set; }
+        public int Hours { get; set; }
+        public double ValuePerHour { get; set; }
 
         public Employee() { }
-        public Employee(string name, char genre, int age) : this()
+        public Employee(string name, int hours, double valuePerHour)
         {
             Name = name;
-            Genre = genre;
-            Age = age;
+            Hours = hours;
+            ValuePerHour = valuePerHour;
         }
 
-        public override string ToString()
+        public virtual double Payment()
         {
-            return $"{Name} is {Genre} with {Age} years old!";
+            return Hours * ValuePerHour;
         }
     }
 }
