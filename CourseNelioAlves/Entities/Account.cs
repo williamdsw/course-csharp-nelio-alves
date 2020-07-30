@@ -2,7 +2,7 @@
 
 namespace CourseNelioAlves.Entities
 {
-    public class Account
+    public abstract class Account
     {
         // PROPERTIES
 
