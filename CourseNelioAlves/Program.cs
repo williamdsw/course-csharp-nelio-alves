@@ -1,8 +1,8 @@
 ﻿using CourseNelioAlves.Entities;
+using CourseNelioAlves.Structs;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 
 namespace CourseNelioAlves
 {
@@ -10,20 +10,43 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            List<Account> accounts = new List<Account>();
-            accounts.Add(new SavingsAccount(1001, "Alex", 500.0, 0.01));
-            accounts.Add(new BusinessAccount(1002, "Maria", 500.0, 400.00));
-            accounts.Add(new SavingsAccount(1003, "Bob", 500.0, 0.01));
-            accounts.Add(new BusinessAccount(1004, "Anna", 500.0, 500.00));
+            List<Shape> shapes = new List<Shape>();
 
-            double sum = accounts.Sum(acc => acc.Balance);
-            Console.WriteLine("Total Balance: " + sum.ToString("F2", CultureInfo.InvariantCulture));
+            Console.Write("Enter the number of shapes: ");
+            int number = int.Parse(Console.ReadLine());
 
-            accounts.ForEach(acc =>
+            for (int i = 1; i <= number; i++)
             {
-                acc.Withdraw(10.0);
-                Console.Write("Updated balance for account ");
-                Console.WriteLine(acc.Number + " : " + acc.Balance.ToString("F2", CultureInfo.InvariantCulture));
+                Console.WriteLine($"Shape #{i} data:");
+                Console.Write("Rectangle or Circle (r/c): ");
+                char type = char.Parse(Console.ReadLine());
+                Console.Write("Color: (Black/Blue/Red): ");
+                Color color = Enum.Parse<Color>(Console.ReadLine());
+
+                if (type == 'r')
+                {
+                    Console.Write("Width: ");
+                    double width = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                    Console.Write("Height: ");
+                    double height = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+                    Shape rectangle = new Rectangle(color, height, width);
+                    shapes.Add(rectangle);
+                }
+                else if (type == 'c')
+                {
+                    Console.Write("Radius: ");
+                    double radius = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+                    Shape circle = new Circle(color, radius);
+                    shapes.Add(circle);
+                }
+            }
+
+            Console.WriteLine("\nSHAPE AREAS:");
+            shapes.ForEach(shape =>
+            {
+                Console.WriteLine(shape.Area().ToString("F2", CultureInfo.InvariantCulture));
             });
         }
     }
