@@ -1,6 +1,6 @@
 ﻿using CourseNelioAlves.Entities;
+using CourseNelioAlves.Entities.Exceptions;
 using System;
-using System.Diagnostics;
 
 namespace CourseNelioAlves
 {
@@ -8,19 +8,15 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            Console.Write("Room number: ");
-            int number = int.Parse(Console.ReadLine());
-            Console.Write("Check-in date (dd/MM/yyyy): ");
-            DateTime checkIn = DateTime.Parse(Console.ReadLine());
-            Console.Write("Check-out date (dd/MM/yyyy): ");
-            DateTime checkOut = DateTime.Parse(Console.ReadLine());
+            try
+            {
+                Console.Write("Room number: ");
+                int number = int.Parse(Console.ReadLine());
+                Console.Write("Check-in date (dd/MM/yyyy): ");
+                DateTime checkIn = DateTime.Parse(Console.ReadLine());
+                Console.Write("Check-out date (dd/MM/yyyy): ");
+                DateTime checkOut = DateTime.Parse(Console.ReadLine());
 
-            if (checkOut <= checkIn)
-            {
-                Console.WriteLine("Error in reservation: Check-out date must be after check-in date");
-            }
-            else
-            {
                 Reservation reservation = new Reservation(number, checkIn, checkOut);
                 Console.WriteLine(reservation);
 
@@ -29,16 +25,16 @@ namespace CourseNelioAlves
                 checkIn = DateTime.Parse(Console.ReadLine());
                 Console.Write("Check-out date (dd/MM/yyyy): ");
                 checkOut = DateTime.Parse(Console.ReadLine());
-                string error = reservation.UpdateDates(checkIn, checkOut);
-
-                if (error != null)
-                {
-                    Console.WriteLine("Error in reservation: " + error);
-                }
-                else
-                {
-                    Console.WriteLine(reservation);
-                }
+                reservation.UpdateDates(checkIn, checkOut);
+                Console.WriteLine(reservation);
+            }
+            catch (DomainException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch(Exception exception)
+            {
+                Console.WriteLine(exception.Message);
             }
         }
     }

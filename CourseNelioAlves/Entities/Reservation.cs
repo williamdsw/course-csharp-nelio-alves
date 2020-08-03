@@ -1,4 +1,5 @@
 ﻿
+using CourseNelioAlves.Entities.Exceptions;
 using System;
 using System.Text;
 
@@ -17,6 +18,11 @@ namespace CourseNelioAlves.Entities
         public Reservation() { }
         public Reservation(int roomNumber, DateTime checkIn, DateTime checkOut)
         {
+            if (checkOut <= checkIn)
+            {
+                throw new DomainException("Check-out date must be after check-in date");
+            }
+
             RoomNumber = roomNumber;
             CheckIn = checkIn;
             CheckOut = checkOut;
@@ -30,31 +36,29 @@ namespace CourseNelioAlves.Entities
             return (int) duration.TotalDays;
         }
 
-        public string UpdateDates(DateTime checkIn, DateTime checkOut)
+        public void UpdateDates(DateTime checkIn, DateTime checkOut)
         {
             DateTime now = DateTime.Now;
             if (checkIn < now || checkOut < now)
             {
-                return "Reservation dates for update must be future dates";
+                throw new DomainException("Reservation dates for update must be future dates");
             }
 
             if (checkOut <= checkIn)
             {
-                return "Check-out date must be after check-in date";
+                throw new DomainException("Check-out date must be after check-in date");
             }
 
             CheckIn = checkIn;
             CheckOut = checkOut;
-
-            return null;
         }
 
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
             builder.Append($"Room {RoomNumber}, ");
-            builder.Append($"check-in {CheckIn.ToString("dd/MM/yyyy")}, ");
-            builder.Append($"check-out {CheckIn.ToString("dd/MM/yyyy")}, ");
+            builder.Append($"check-in: {CheckIn.ToString("dd/MM/yyyy")}, ");
+            builder.Append($"check-out: {CheckOut.ToString("dd/MM/yyyy")}, ");
             builder.Append($"{Duration()} nights! ");
             return builder.ToString();
         }
