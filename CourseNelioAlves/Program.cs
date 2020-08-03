@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace CourseNelioAlves
 {
@@ -6,25 +7,25 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
+            FileStream fileStream = null;
             try
             {
-                int a = int.Parse(Console.ReadLine());
-                int b = int.Parse(Console.ReadLine());
-                int c = a / b;
-                Console.WriteLine(c);
-            }
-            catch (DivideByZeroException ex)
-            {
-                Console.WriteLine("Cannot divide by zero!");
-            }
-            catch(FormatException ex)
-            {
-                Console.WriteLine("Number cannot be a letter or word...");
-                Console.WriteLine(ex.Message);
+                fileStream = new FileStream(@"C:\temp\data.txt", FileMode.Open);
+                StreamReader streamReader = new StreamReader(fileStream);
+                string line = streamReader.ReadLine();
+                streamReader.Close();
+                Console.WriteLine(line);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error! " + ex.Message);
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (fileStream != null)
+                {
+                    fileStream.Close();
+                }
             }
         }
     }
