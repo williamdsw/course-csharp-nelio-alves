@@ -1,8 +1,4 @@
-﻿using CourseNelioAlves.Entities;
-using CourseNelioAlves.Structs;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System;
 
 namespace CourseNelioAlves
 {
@@ -10,44 +6,26 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            List<Shape> shapes = new List<Shape>();
-
-            Console.Write("Enter the number of shapes: ");
-            int number = int.Parse(Console.ReadLine());
-
-            for (int i = 1; i <= number; i++)
+            try
             {
-                Console.WriteLine($"Shape #{i} data:");
-                Console.Write("Rectangle or Circle (r/c): ");
-                char type = char.Parse(Console.ReadLine());
-                Console.Write("Color: (Black/Blue/Red): ");
-                Color color = Enum.Parse<Color>(Console.ReadLine());
-
-                if (type == 'r')
-                {
-                    Console.Write("Width: ");
-                    double width = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-                    Console.Write("Height: ");
-                    double height = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-
-                    Shape rectangle = new Rectangle(color, height, width);
-                    shapes.Add(rectangle);
-                }
-                else if (type == 'c')
-                {
-                    Console.Write("Radius: ");
-                    double radius = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-
-                    Shape circle = new Circle(color, radius);
-                    shapes.Add(circle);
-                }
+                int a = int.Parse(Console.ReadLine());
+                int b = int.Parse(Console.ReadLine());
+                int c = a / b;
+                Console.WriteLine(c);
             }
-
-            Console.WriteLine("\nSHAPE AREAS:");
-            shapes.ForEach(shape =>
+            catch (DivideByZeroException ex)
             {
-                Console.WriteLine(shape.Area().ToString("F2", CultureInfo.InvariantCulture));
-            });
+                Console.WriteLine("Cannot divide by zero!");
+            }
+            catch(FormatException ex)
+            {
+                Console.WriteLine("Number cannot be a letter or word...");
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error! " + ex.Message);
+            }
         }
     }
 }
