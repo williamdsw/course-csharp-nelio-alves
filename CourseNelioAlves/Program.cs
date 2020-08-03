@@ -1,5 +1,6 @@
-﻿using System;
-using System.IO;
+﻿using CourseNelioAlves.Entities;
+using System;
+using System.Diagnostics;
 
 namespace CourseNelioAlves
 {
@@ -7,25 +8,43 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            FileStream fileStream = null;
-            try
+            Console.Write("Room number: ");
+            int number = int.Parse(Console.ReadLine());
+            Console.Write("Check-in date (dd/MM/yyyy): ");
+            DateTime checkIn = DateTime.Parse(Console.ReadLine());
+            Console.Write("Check-out date (dd/MM/yyyy): ");
+            DateTime checkOut = DateTime.Parse(Console.ReadLine());
+
+            if (checkOut <= checkIn)
             {
-                fileStream = new FileStream(@"C:\temp\data.txt", FileMode.Open);
-                StreamReader streamReader = new StreamReader(fileStream);
-                string line = streamReader.ReadLine();
-                streamReader.Close();
-                Console.WriteLine(line);
+                Console.WriteLine("Error in reservation: Check-out date must be after check-in date");
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                if (fileStream != null)
+                Reservation reservation = new Reservation(number, checkIn, checkOut);
+                Console.WriteLine(reservation);
+
+                Console.WriteLine("\nEnter data to update the reservation");
+                Console.Write("Check-in date (dd/MM/yyyy): ");
+                checkIn = DateTime.Parse(Console.ReadLine());
+                Console.Write("Check-out date (dd/MM/yyyy): ");
+                checkOut = DateTime.Parse(Console.ReadLine());
+
+                DateTime now = DateTime.Now;
+                if (checkIn < now || checkOut < now)
                 {
-                    fileStream.Close();
+                    Console.WriteLine("Error in reservation: Reservation dates for update must be future dates");
                 }
+                else if (checkOut <= checkIn)
+                {
+                    Console.WriteLine("Error in reservation: Check-out date must be after check-in date");
+                }
+                else
+                {
+                    reservation.UpdateDates(checkIn, checkOut);
+                    Console.WriteLine(reservation);
+                }
+
             }
         }
     }
