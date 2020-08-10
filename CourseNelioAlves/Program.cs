@@ -10,7 +10,8 @@ namespace CourseNelioAlves
             //FileInfoAndFileExample();
             //FileStreamAndStreamReaderExample();
             //StreamReaderWithFileExample();
-            UsingKeywordExample();
+            //UsingKeywordExample();
+            StreamWriterExample();
         }
 
         private static void FileInfoAndFileExample()
@@ -116,6 +117,29 @@ namespace CourseNelioAlves
                     {
                         string line = streamReader.ReadLine();
                         Console.WriteLine(line);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An Error Occurred: ");
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private static void StreamWriterExample()
+        {
+            string sourcePath = @"D:\workspace\vs2019\CourseNelioAlves\files\file1.txt";
+            string targetPath = @"D:\workspace\vs2019\CourseNelioAlves\files\file2.txt";
+
+            try
+            {
+                string[] lines = File.ReadAllLines(sourcePath);
+                using(StreamWriter streamWriter = File.AppendText(targetPath))
+                {
+                    foreach (string line in lines)
+                    {
+                        streamWriter.WriteLine(line.ToUpper());
                     }
                 }
             }
