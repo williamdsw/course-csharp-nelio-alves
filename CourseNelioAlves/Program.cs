@@ -9,6 +9,13 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
+            //FileInfoAndFileExample();
+            FileStreamAndStreamReaderExample();
+            StreamReaderWithFileExample();
+        }
+
+        private static void FileInfoAndFileExample()
+        {
             string sourcePath = @"D:\workspace\vs2019\CourseNelioAlves\files\file1.txt";
             string targetPath = @"D:\workspace\vs2019\CourseNelioAlves\files\file2.txt";
 
@@ -30,6 +37,69 @@ namespace CourseNelioAlves
             {
                 Console.WriteLine("An Error Occurred: ");
                 Console.WriteLine(ex.Message);
+            }
+        }
+
+        private static void FileStreamAndStreamReaderExample()
+        {
+            string path = @"D:\workspace\vs2019\CourseNelioAlves\files\file1.txt";
+            FileStream fileStream = null;
+            StreamReader streamReader = null;
+
+            try
+            {
+                fileStream = new FileStream(path, FileMode.Open);
+                streamReader = new StreamReader(fileStream);
+                string line = streamReader.ReadLine();
+                Console.WriteLine("First line: ");
+                Console.WriteLine(line);
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine("An Error Occurred: ");
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (fileStream != null)
+                {
+                    fileStream.Close();
+                }
+
+                if (streamReader != null)
+                {
+                    streamReader.Close();
+                }
+            }
+        }
+
+        private static void StreamReaderWithFileExample()
+        {
+            string path = @"D:\workspace\vs2019\CourseNelioAlves\files\file1.txt";
+            StreamReader streamReader = null;
+
+            try
+            {
+                streamReader = File.OpenText(path);
+                Console.WriteLine("All content: ");
+
+                while (!streamReader.EndOfStream)
+                {
+                    string line = streamReader.ReadLine();
+                    Console.WriteLine(line);
+                }
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine("An Error Occurred: ");
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (streamReader != null)
+                {
+                    streamReader.Close();
+                }
             }
         }
     }
