@@ -1,6 +1,4 @@
-﻿using CourseNelioAlves.Entities;
-using CourseNelioAlves.Entities.Exceptions;
-using System;
+﻿using System;
 using System.IO;
 
 namespace CourseNelioAlves
@@ -10,8 +8,9 @@ namespace CourseNelioAlves
         static void Main(string[] args)
         {
             //FileInfoAndFileExample();
-            FileStreamAndStreamReaderExample();
-            StreamReaderWithFileExample();
+            //FileStreamAndStreamReaderExample();
+            //StreamReaderWithFileExample();
+            UsingKeywordExample();
         }
 
         private static void FileInfoAndFileExample()
@@ -100,6 +99,30 @@ namespace CourseNelioAlves
                 {
                     streamReader.Close();
                 }
+            }
+        }
+
+        private static void UsingKeywordExample()
+        {
+            string path = @"D:\workspace\vs2019\CourseNelioAlves\files\file1.txt";
+
+            try
+            {
+                // using (FileStream ...) {}
+                using (StreamReader streamReader = File.OpenText(path))
+                {
+                    Console.WriteLine("File content:");
+                    while (!streamReader.EndOfStream)
+                    {
+                        string line = streamReader.ReadLine();
+                        Console.WriteLine(line);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An Error Occurred: ");
+                Console.WriteLine(ex.Message);
             }
         }
     }
