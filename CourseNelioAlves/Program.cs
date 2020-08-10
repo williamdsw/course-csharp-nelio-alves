@@ -13,7 +13,8 @@ namespace CourseNelioAlves
             //StreamReaderWithFileExample();
             //UsingKeywordExample();
             //StreamWriterExample();
-            DirectoryAndDirectoryInfoExamples();
+            //DirectoryAndDirectoryInfoExamples();
+            PathExamples();
         }
 
         private static void FileInfoAndFileExample()
@@ -179,6 +180,22 @@ namespace CourseNelioAlves
                 Console.WriteLine("An Error Occurred: ");
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private static void PathExamples()
+        {
+            string path = @"D:\workspace\vs2019\CourseNelioAlves\files\file1.txt";
+
+            Console.WriteLine($"Path: {path}");
+            Console.WriteLine($"GetDirectoryName: {Path.GetDirectoryName(path)}");
+            Console.WriteLine($"DirectorySeparatorChar: {Path.DirectorySeparatorChar}");
+            Console.WriteLine($"PathSeparator: {Path.PathSeparator}");
+            Console.WriteLine($"GetFileName: {Path.GetFileName(path)}");
+            Console.WriteLine($"GetFileNameWithoutExtension: {Path.GetFileNameWithoutExtension(path)}");
+            Console.WriteLine($"GetExtension: {Path.GetExtension(path)}");
+            Console.WriteLine($"GetFullPath: {Path.GetFullPath(path)}");
+            Console.WriteLine($"GetTempPath: {Path.GetTempPath()}");
+            Console.WriteLine($"GetTempFileName: {Path.GetTempFileName()}");
         }
     }
 }
