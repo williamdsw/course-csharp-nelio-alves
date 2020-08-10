@@ -24,11 +24,11 @@ namespace Entities
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendLine("Basic payment: ");
+            builder.Append("Basic payment: ");
             builder.AppendLine(BasicPayment.ToString("F2", CultureInfo.InvariantCulture));
-            builder.AppendLine("Tax: ");
+            builder.Append("Tax: ");
             builder.AppendLine(Tax.ToString("F2", CultureInfo.InvariantCulture));
-            builder.AppendLine("Total Payment: ");
+            builder.Append("Total Payment: ");
             builder.AppendLine(TotalPayment.ToString("F2", CultureInfo.InvariantCulture));
             return builder.ToString();
         }

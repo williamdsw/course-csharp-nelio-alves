@@ -1,5 +1,5 @@
 ﻿
-namespace CourseNelioAlves.InterfaceChapter.Services
+namespace Services
 {
     public class BrazilTaxService
     {
