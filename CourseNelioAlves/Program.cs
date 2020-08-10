@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.IO;
 
 namespace CourseNelioAlves
@@ -11,7 +12,8 @@ namespace CourseNelioAlves
             //FileStreamAndStreamReaderExample();
             //StreamReaderWithFileExample();
             //UsingKeywordExample();
-            StreamWriterExample();
+            //StreamWriterExample();
+            DirectoryAndDirectoryInfoExamples();
         }
 
         private static void FileInfoAndFileExample()
@@ -120,7 +122,7 @@ namespace CourseNelioAlves
                     }
                 }
             }
-            catch (Exception ex)
+            catch (IOException ex)
             {
                 Console.WriteLine("An Error Occurred: ");
                 Console.WriteLine(ex.Message);
@@ -143,7 +145,36 @@ namespace CourseNelioAlves
                     }
                 }
             }
-            catch (Exception ex)
+            catch (IOException ex)
+            {
+                Console.WriteLine("An Error Occurred: ");
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private static void DirectoryAndDirectoryInfoExamples()
+        {
+            string path = @"D:\workspace\vs2019\CourseNelioAlves\files";
+
+            try
+            {
+                IEnumerable directories = Directory.EnumerateDirectories(path, "*.*", SearchOption.AllDirectories);
+                Console.WriteLine("FOLDERS:");
+                foreach (string dir in directories)
+                {
+                    Console.WriteLine(dir);
+                }
+                
+                var files = Directory.EnumerateFiles(path, "*.*", SearchOption.AllDirectories);
+                Console.WriteLine("FILES:");
+                foreach (string file in files)
+                {
+                    Console.WriteLine(file);
+                }
+
+                Directory.CreateDirectory(path + @"\newfolder");
+            }
+            catch (IOException ex)
             {
                 Console.WriteLine("An Error Occurred: ");
                 Console.WriteLine(ex.Message);
