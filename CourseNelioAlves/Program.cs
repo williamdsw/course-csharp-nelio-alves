@@ -1,6 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.IO;
+﻿
+using Entities;
+using System;
+using System.Globalization;
 
 namespace CourseNelioAlves
 {
@@ -8,194 +9,23 @@ namespace CourseNelioAlves
     {
         static void Main(string[] args)
         {
-            //FileInfoAndFileExample();
-            //FileStreamAndStreamReaderExample();
-            //StreamReaderWithFileExample();
-            //UsingKeywordExample();
-            //StreamWriterExample();
-            //DirectoryAndDirectoryInfoExamples();
-            PathExamples();
-        }
+			try
+			{
+                Console.WriteLine("Enter rental data");
+                Console.Write("Car Model:" );
+                string model = Console.ReadLine();
+                Console.Write("Pickup (dd/MM/yyyy hh:mm): " );
+                DateTime start = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy hh:mm", CultureInfo.InvariantCulture);
+                Console.Write("Return (dd/MM/yyyy hh:mm): " );
+                DateTime finish = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy hh:mm", CultureInfo.InvariantCulture);
 
-        private static void FileInfoAndFileExample()
-        {
-            string sourcePath = @"D:\workspace\vs2019\CourseNelioAlves\files\file1.txt";
-            string targetPath = @"D:\workspace\vs2019\CourseNelioAlves\files\file2.txt";
-
-            try
-            {
-                FileInfo fileInfo = new FileInfo(sourcePath);
-                fileInfo.CopyTo(targetPath);
-
-                Console.WriteLine("File content:");
-                string[] lines = File.ReadAllLines(sourcePath);
-                foreach (string line in lines)
-                {
-                    Console.WriteLine(line);
-                }
-
-                Console.ReadLine();
+                Vehicle vehicle = new Vehicle(model);
+                CarRental carRental = new CarRental(start, finish, vehicle);
             }
-            catch (IOException ex)
-            {
-                Console.WriteLine("An Error Occurred: ");
+			catch (Exception ex)
+			{
                 Console.WriteLine(ex.Message);
-            }
-        }
-
-        private static void FileStreamAndStreamReaderExample()
-        {
-            string path = @"D:\workspace\vs2019\CourseNelioAlves\files\file1.txt";
-            FileStream fileStream = null;
-            StreamReader streamReader = null;
-
-            try
-            {
-                fileStream = new FileStream(path, FileMode.Open);
-                streamReader = new StreamReader(fileStream);
-                string line = streamReader.ReadLine();
-                Console.WriteLine("First line: ");
-                Console.WriteLine(line);
-            }
-            catch (IOException ex)
-            {
-                Console.WriteLine("An Error Occurred: ");
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                if (fileStream != null)
-                {
-                    fileStream.Close();
-                }
-
-                if (streamReader != null)
-                {
-                    streamReader.Close();
-                }
-            }
-        }
-
-        private static void StreamReaderWithFileExample()
-        {
-            string path = @"D:\workspace\vs2019\CourseNelioAlves\files\file1.txt";
-            StreamReader streamReader = null;
-
-            try
-            {
-                streamReader = File.OpenText(path);
-                Console.WriteLine("All content: ");
-
-                while (!streamReader.EndOfStream)
-                {
-                    string line = streamReader.ReadLine();
-                    Console.WriteLine(line);
-                }
-            }
-            catch (IOException ex)
-            {
-                Console.WriteLine("An Error Occurred: ");
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                if (streamReader != null)
-                {
-                    streamReader.Close();
-                }
-            }
-        }
-
-        private static void UsingKeywordExample()
-        {
-            string path = @"D:\workspace\vs2019\CourseNelioAlves\files\file1.txt";
-
-            try
-            {
-                // using (FileStream ...) {}
-                using (StreamReader streamReader = File.OpenText(path))
-                {
-                    Console.WriteLine("File content:");
-                    while (!streamReader.EndOfStream)
-                    {
-                        string line = streamReader.ReadLine();
-                        Console.WriteLine(line);
-                    }
-                }
-            }
-            catch (IOException ex)
-            {
-                Console.WriteLine("An Error Occurred: ");
-                Console.WriteLine(ex.Message);
-            }
-        }
-
-        private static void StreamWriterExample()
-        {
-            string sourcePath = @"D:\workspace\vs2019\CourseNelioAlves\files\file1.txt";
-            string targetPath = @"D:\workspace\vs2019\CourseNelioAlves\files\file2.txt";
-
-            try
-            {
-                string[] lines = File.ReadAllLines(sourcePath);
-                using(StreamWriter streamWriter = File.AppendText(targetPath))
-                {
-                    foreach (string line in lines)
-                    {
-                        streamWriter.WriteLine(line.ToUpper());
-                    }
-                }
-            }
-            catch (IOException ex)
-            {
-                Console.WriteLine("An Error Occurred: ");
-                Console.WriteLine(ex.Message);
-            }
-        }
-
-        private static void DirectoryAndDirectoryInfoExamples()
-        {
-            string path = @"D:\workspace\vs2019\CourseNelioAlves\files";
-
-            try
-            {
-                IEnumerable directories = Directory.EnumerateDirectories(path, "*.*", SearchOption.AllDirectories);
-                Console.WriteLine("FOLDERS:");
-                foreach (string dir in directories)
-                {
-                    Console.WriteLine(dir);
-                }
-                
-                var files = Directory.EnumerateFiles(path, "*.*", SearchOption.AllDirectories);
-                Console.WriteLine("FILES:");
-                foreach (string file in files)
-                {
-                    Console.WriteLine(file);
-                }
-
-                Directory.CreateDirectory(path + @"\newfolder");
-            }
-            catch (IOException ex)
-            {
-                Console.WriteLine("An Error Occurred: ");
-                Console.WriteLine(ex.Message);
-            }
-        }
-
-        private static void PathExamples()
-        {
-            string path = @"D:\workspace\vs2019\CourseNelioAlves\files\file1.txt";
-
-            Console.WriteLine($"Path: {path}");
-            Console.WriteLine($"GetDirectoryName: {Path.GetDirectoryName(path)}");
-            Console.WriteLine($"DirectorySeparatorChar: {Path.DirectorySeparatorChar}");
-            Console.WriteLine($"PathSeparator: {Path.PathSeparator}");
-            Console.WriteLine($"GetFileName: {Path.GetFileName(path)}");
-            Console.WriteLine($"GetFileNameWithoutExtension: {Path.GetFileNameWithoutExtension(path)}");
-            Console.WriteLine($"GetExtension: {Path.GetExtension(path)}");
-            Console.WriteLine($"GetFullPath: {Path.GetFullPath(path)}");
-            Console.WriteLine($"GetTempPath: {Path.GetTempPath()}");
-            Console.WriteLine($"GetTempFileName: {Path.GetTempFileName()}");
+			}
         }
     }
 }
