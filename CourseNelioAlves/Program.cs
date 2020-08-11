@@ -12,26 +12,21 @@ namespace CourseNelioAlves
         {
 			try
 			{
-                Console.WriteLine("Enter rental data");
-                Console.Write("Car Model: ");
-                string model = Console.ReadLine();
-                Console.Write("Pickup (dd/MM/yyyy hh:mm): ");
-                DateTime start = DateTime.Parse(Console.ReadLine()); // ParseExact(...)
-                Console.Write("Return (dd/MM/yyyy hh:mm): ");
-                DateTime finish = DateTime.Parse(Console.ReadLine());
+                Console.WriteLine("Enter contract data:");
+                Console.Write("Number: ");
+                int number = int.Parse(Console.ReadLine());
+                Console.Write("Date (dd/MM/yyyy): ");
+                DateTime date = DateTime.Parse(Console.ReadLine());
+                Console.Write("Contract value: ");
+                double totalValue = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                Console.Write("Enter the number of installments: ");
+                int installments = int.Parse(Console.ReadLine());
 
-                Console.Write("Enter price per hour: ");
-                double pricePerHour = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-                Console.Write("Enter price per day: ");
-                double pricePerDay = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                Contract contract = new Contract(number, date, totalValue);
+                ContractService contractService = new ContractService(new PaypalService());
+                contractService.ProcessContract(contract, installments);
 
-                Vehicle vehicle = new Vehicle(model);
-                CarRental carRental = new CarRental(start, finish, vehicle);
-                RentalService rentalService = new RentalService(pricePerHour, pricePerDay, new BrazilTaxService());
-                rentalService.ProcessInvoice(carRental);
-
-                Console.WriteLine("INVOICE: ");
-                Console.WriteLine(carRental.Invoice);
+                Console.WriteLine(contract);
             }
 			catch (Exception ex)
 			{
