@@ -1,7 +1,9 @@
 ﻿
+using CourseNelioAlves.InterfaceChapter.Services;
+
 namespace Services
 {
-    public class BrazilTaxService
+    public class BrazilTaxService : ITaxService
     {
         public double Tax(double amount)
         {
