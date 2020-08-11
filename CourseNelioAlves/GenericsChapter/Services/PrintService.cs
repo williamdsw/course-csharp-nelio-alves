@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace Services
 {
-    public class PrintService
+    public class PrintService<T>
     {
-        private List<int> _values = new List<int>();
+        private List<T> _values = new List<T>();
 
         public PrintService() { }
 
-        public void AddValue(int value)
+        public void AddValue(T value)
         {
             if (_values.Count == 10)
             {
@@ -20,7 +20,7 @@ namespace Services
             _values.Add(value);
         }
 
-        public int First()
+        public T First()
         {
             if (_values.Count == 0)
             {
@@ -33,7 +33,7 @@ namespace Services
         public void Print()
         {
             Console.Write("[");
-            foreach (int value in _values)
+            foreach (T value in _values)
             {
                 Console.Write($" {value} ");
             }

@@ -10,18 +10,31 @@ namespace CourseNelioAlves
         {
 			try
 			{
-                PrintService printService = new PrintService();
+                PrintService<int> printService1 = new PrintService<int>();
 
-                Console.Write("How many values ? ");
-                int count = int.Parse(Console.ReadLine());
-                for (int i = 0; i < count; i++)
+                Console.Write("How many integers ? ");
+                int count1 = int.Parse(Console.ReadLine());
+                for (int i = 0; i < count1; i++)
                 {
                     int value = int.Parse(Console.ReadLine());
-                    printService.AddValue(value);
+                    printService1.AddValue(value);
                 }
 
-                printService.Print();
-                Console.WriteLine($"\nFirst: {printService.First()}");
+                printService1.Print();
+                Console.WriteLine($"\nFirst: {printService1.First()}");
+                
+                PrintService<string> printService2 = new PrintService<string>();
+
+                Console.Write("\nHow many names ? ");
+                int count2 = int.Parse(Console.ReadLine());
+                for (int i = 0; i < count2; i++)
+                {
+                    string value = Console.ReadLine();
+                    printService2.AddValue(value);
+                }
+
+                printService2.Print();
+                Console.WriteLine($"\nFirst: {printService2.First()}");
             }
 			catch (Exception ex)
 			{
