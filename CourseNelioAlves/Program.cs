@@ -1,8 +1,6 @@
 ﻿
-using Entities;
+using Services;
 using System;
-using System.Collections.Generic;
-using System.IO;
 
 namespace CourseNelioAlves
 {
@@ -12,25 +10,20 @@ namespace CourseNelioAlves
         {
 			try
 			{
-                string path = @"D:\workspace\vs2019\CourseNelioAlves\files\names.txt";
+                PrintService printService = new PrintService();
 
-                using (StreamReader streamReader = File.OpenText(path))
+                Console.Write("How many values ? ");
+                int count = int.Parse(Console.ReadLine());
+                for (int i = 0; i < count; i++)
                 {
-                    List<Musician> musicians = new List<Musician>();
-                    while (!streamReader.EndOfStream)
-                    {
-                        string line = streamReader.ReadLine();
-                        musicians.Add(new Musician(line));
-                    }
-
-                    musicians.Sort();
-                    foreach (Musician musician in musicians)
-                    {
-                        Console.WriteLine(musician);
-                    }
+                    int value = int.Parse(Console.ReadLine());
+                    printService.AddValue(value);
                 }
+
+                printService.Print();
+                Console.WriteLine($"\nFirst: {printService.First()}");
             }
-			catch (IOException ex)
+			catch (Exception ex)
 			{
                 Console.WriteLine(ex.Message);
 			}
