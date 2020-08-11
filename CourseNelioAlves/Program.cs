@@ -1,7 +1,8 @@
 ﻿
-using CourseNelioAlves.InterfaceChapter.Devices;
-using Devices;
+using Entities;
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace CourseNelioAlves
 {
@@ -11,20 +12,25 @@ namespace CourseNelioAlves
         {
 			try
 			{
-                Printer printer = new Printer() { SerialNumber = 1080 };
-                printer.ProcessDocument("My letter");
-                printer.Print("My letter");
+                string path = @"D:\workspace\vs2019\CourseNelioAlves\files\names.txt";
 
-                Scanner scanner = new Scanner() { SerialNumber = 2003 };
-                scanner.ProcessDocument("My Email");
-                Console.WriteLine(scanner.Scan());
+                using (StreamReader streamReader = File.OpenText(path))
+                {
+                    List<Musician> musicians = new List<Musician>();
+                    while (!streamReader.EndOfStream)
+                    {
+                        string line = streamReader.ReadLine();
+                        musicians.Add(new Musician(line));
+                    }
 
-                ComboDevice comboDevice = new ComboDevice() { SerialNumber = 3921 };
-                comboDevice.ProcessDocument("My dissertation");
-                comboDevice.Print("My dissertation");
-                Console.WriteLine(comboDevice.Scan());
+                    musicians.Sort();
+                    foreach (Musician musician in musicians)
+                    {
+                        Console.WriteLine(musician);
+                    }
+                }
             }
-			catch (Exception ex)
+			catch (IOException ex)
 			{
                 Console.WriteLine(ex.Message);
 			}

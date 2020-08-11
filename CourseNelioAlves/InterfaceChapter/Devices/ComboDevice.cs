@@ -1,7 +1,5 @@
 ﻿
-using Devices;
-
-namespace CourseNelioAlves.InterfaceChapter.Devices
+namespace Devices
 {
     // Cannot inherit multiple classes
     // public class ComboDevice : Scanner, Printer
