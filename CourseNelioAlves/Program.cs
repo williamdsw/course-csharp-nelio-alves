@@ -1,5 +1,6 @@
 ﻿
 using Entities;
+using Enums;
 using Services;
 using System;
 using System.Globalization;
@@ -12,21 +13,11 @@ namespace CourseNelioAlves
         {
 			try
 			{
-                Console.WriteLine("Enter contract data:");
-                Console.Write("Number: ");
-                int number = int.Parse(Console.ReadLine());
-                Console.Write("Date (dd/MM/yyyy): ");
-                DateTime date = DateTime.Parse(Console.ReadLine());
-                Console.Write("Contract value: ");
-                double totalValue = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-                Console.Write("Enter the number of installments: ");
-                int installments = int.Parse(Console.ReadLine());
+                IShape circle = new Circle() { Radius = 2.0, Color = Color.Blue };
+                IShape rectangle = new Rectangle() { Width = 3.5, Height = 4.2, Color = Color.Red };
 
-                Contract contract = new Contract(number, date, totalValue);
-                ContractService contractService = new ContractService(new PaypalService());
-                contractService.ProcessContract(contract, installments);
-
-                Console.WriteLine(contract);
+                Console.WriteLine(circle);
+                Console.WriteLine(rectangle);
             }
 			catch (Exception ex)
 			{
