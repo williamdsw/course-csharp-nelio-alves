@@ -15,17 +15,15 @@ namespace Services
 
         public void ProcessContract(Contract contract, int months)
         {
-            double amount = contract.TotalValue / months;
+            double baseQuote = contract.TotalValue / months;
             for (int i = 1; i <= months; i++)
             {
                 DateTime dueDate = contract.Date.AddMonths(i);
-                amount += _onlinePaymentService.PaymentFee(amount);
-                amount += _onlinePaymentService.Interest(amount, i);
+                double updatedQuote = baseQuote + _onlinePaymentService.Interest(baseQuote, i);
+                double totalQuote = updatedQuote + _onlinePaymentService.PaymentFee(updatedQuote);
 
-                Installment installment = new Installment(dueDate, amount);
+                Installment installment = new Installment(dueDate, totalQuote);
                 contract.AddInstallment(installment);
-
-                amount = contract.TotalValue / months;
             }
         }
     }
