@@ -1,6 +1,9 @@
 ﻿
+using Entities;
 using Services;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 
 namespace CourseNelioAlves
 {
@@ -10,31 +13,27 @@ namespace CourseNelioAlves
         {
 			try
 			{
-                PrintService<int> printService1 = new PrintService<int>();
+                List<Product> listProducts = new List<Product>();
 
-                Console.Write("How many integers ? ");
-                int count1 = int.Parse(Console.ReadLine());
-                for (int i = 0; i < count1; i++)
-                {
-                    int value = int.Parse(Console.ReadLine());
-                    printService1.AddValue(value);
-                }
-
-                printService1.Print();
-                Console.WriteLine($"\nFirst: {printService1.First()}");
+                Console.Write("Enter N: ");
                 
-                PrintService<string> printService2 = new PrintService<string>();
+                int n = int.Parse(Console.ReadLine());
 
-                Console.Write("\nHow many names ? ");
-                int count2 = int.Parse(Console.ReadLine());
-                for (int i = 0; i < count2; i++)
+                for (int i = 0; i < n; i++)
                 {
-                    string value = Console.ReadLine();
-                    printService2.AddValue(value);
+                    Console.WriteLine("Name and Price: ");
+                    string[] values = Console.ReadLine().Split(",");
+                    string name = values[0];
+                    double price = double.Parse(values[1], CultureInfo.InvariantCulture);
+
+                    Product product = new Product(name, price);
+                    listProducts.Add(product);
                 }
 
-                printService2.Print();
-                Console.WriteLine($"\nFirst: {printService2.First()}");
+                CalculationService calculationService = new CalculationService();
+                Product max = calculationService.Max(listProducts);
+
+                Console.WriteLine($"Max of Products: {max}");
             }
 			catch (Exception ex)
 			{

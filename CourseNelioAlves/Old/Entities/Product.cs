@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace CourseNelioAlves
+namespace Entities.Old
 {
     class Product
     {
