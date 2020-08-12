@@ -13,27 +13,24 @@ namespace CourseNelioAlves
         {
 			try
 			{
-                List<Product> listProducts = new List<Product>();
+                string a = "Maria";
+                string b = "Alex";
+                string c = "Maria";
 
-                Console.Write("Enter N: ");
-                
-                int n = int.Parse(Console.ReadLine());
+                Console.WriteLine($"a = {a}, b = {b}, c = {c}");
+                Console.WriteLine($"a equals b ? {a.Equals(b)}");
+                Console.WriteLine($"a equals c ? {a.Equals(c)}");
+                Console.WriteLine($"a hash code ? {a.GetHashCode()}");
+                Console.WriteLine($"b hash code ? {b.GetHashCode()}");
+                Console.WriteLine($"c hash code ? {c.GetHashCode()}");
 
-                for (int i = 0; i < n; i++)
-                {
-                    Console.WriteLine("Name and Price: ");
-                    string[] values = Console.ReadLine().Split(",");
-                    string name = values[0];
-                    double price = double.Parse(values[1], CultureInfo.InvariantCulture);
+                Client maria = new Client("Maria", "maria@gmail.com");
+                Client alex = new Client("Alex", "alex@gmail.com");
 
-                    Product product = new Product(name, price);
-                    listProducts.Add(product);
-                }
-
-                CalculationService calculationService = new CalculationService();
-                Product max = calculationService.Max(listProducts);
-
-                Console.WriteLine($"Max of Products: {max}");
+                Console.WriteLine(maria.Equals(alex));
+                Console.WriteLine(maria == alex); // Compare reference pointers
+                Console.WriteLine(maria.GetHashCode());
+                Console.WriteLine(alex.GetHashCode());
             }
 			catch (Exception ex)
 			{
