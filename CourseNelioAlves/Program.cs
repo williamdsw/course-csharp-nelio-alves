@@ -3,6 +3,7 @@ using Entities;
 using Structs;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace CourseNelioAlves
 {
@@ -12,35 +13,32 @@ namespace CourseNelioAlves
         {
 			try
 			{
-                HashSet<string> set = new HashSet<string>();
-                set.Add("Maria");
-                set.Add("Alex");
+                HashSet<LogEntry> logEntries = new HashSet<LogEntry>();
 
-                Console.WriteLine(set.Contains("Maria"));
+                Console.Write("Enter file full path: ");
+                string path = Console.ReadLine();
 
-                HashSet<Product> products = new HashSet<Product>();
-                products.Add(new Product("TV", 900.0));
-                products.Add(new Product("Notebook", 1200.0));
+                //string path = @"D:\workspace\vs2019\CourseNelioAlves\files\log-access.txt";
+                Console.WriteLine();
+                using (StreamReader reader = File.OpenText(path))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        string line = reader.ReadLine();
+                        Console.WriteLine(line);
 
-                HashSet<Point> points = new HashSet<Point>();
-                points.Add(new Point(3, 4));
-                points.Add(new Point(5, 10));
+                        string[] values = line.Split(' ');
+                        LogEntry entry = new LogEntry(values[0], DateTime.Parse(values[1]));
+                        logEntries.Add(entry);
+                    }
+                }
 
-                Product product = new Product("Notebook", 1200.0);
-
-                // Primary compare by reference
-                // Product class need to override GetHashCode() and Equals() to compare by values
-                Console.WriteLine(products.Contains(product));
-
-                // Compares by value
-                Point point = new Point(5, 10);
-                Console.WriteLine(points.Contains(point));
+                Console.WriteLine($"\nTotal users: {logEntries.Count}");
             }
-			catch (Exception ex)
+			catch (IOException ex)
 			{
                 Console.WriteLine(ex.Message);
 			}
         }
-
     }
 }
