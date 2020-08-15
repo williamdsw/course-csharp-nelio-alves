@@ -1,7 +1,8 @@
 ﻿
+using Entities;
+using Structs;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace CourseNelioAlves
 {
@@ -11,26 +12,29 @@ namespace CourseNelioAlves
         {
 			try
 			{
-                SortedSet<int> a = new SortedSet<int>() { 0, 2, 4, 5, 6, 8, 10 };
-                SortedSet<int> b = new SortedSet<int>() { 5, 6, 7, 8, 9, 10 };
+                HashSet<string> set = new HashSet<string>();
+                set.Add("Maria");
+                set.Add("Alex");
 
-                PrintCollection(a);
-                PrintCollection(b);
+                Console.WriteLine(set.Contains("Maria"));
 
-                // Union
-                SortedSet<int> c = new SortedSet<int>(a);
-                c.UnionWith(b);
-                PrintCollection(c);
+                HashSet<Product> products = new HashSet<Product>();
+                products.Add(new Product("TV", 900.0));
+                products.Add(new Product("Notebook", 1200.0));
 
-                // Intersection
-                SortedSet<int> d = new SortedSet<int>(a);
-                d.IntersectWith(b);
-                PrintCollection(d);
+                HashSet<Point> points = new HashSet<Point>();
+                points.Add(new Point(3, 4));
+                points.Add(new Point(5, 10));
 
-                // Difference
-                SortedSet<int> e = new SortedSet<int>(a);
-                e.ExceptWith(b);
-                PrintCollection(e);
+                Product product = new Product("Notebook", 1200.0);
+
+                // Primary compare by reference
+                // Product class need to override GetHashCode() and Equals() to compare by values
+                Console.WriteLine(products.Contains(product));
+
+                // Compares by value
+                Point point = new Point(5, 10);
+                Console.WriteLine(points.Contains(point));
             }
 			catch (Exception ex)
 			{
@@ -38,14 +42,5 @@ namespace CourseNelioAlves
 			}
         }
 
-        private static void PrintCollection<T>(IEnumerable<T> collection)
-        {
-            foreach(T item in collection)
-            {
-                Console.Write($" {item} ");
-            }
-
-            Console.WriteLine();
-        }
     }
 }

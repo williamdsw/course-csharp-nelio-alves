@@ -1,5 +1,5 @@
 ﻿
-namespace CourseNelioAlves
+namespace CourseNelioAlves.Old
 {
     struct Point
     {
