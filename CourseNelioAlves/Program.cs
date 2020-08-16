@@ -2,6 +2,7 @@
 using LastChapter.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CourseNelioAlves
 {
@@ -18,22 +19,15 @@ namespace CourseNelioAlves
                 products.Add(new Product("Tablet", 350.50));
                 products.Add(new Product("HD Case", 80.90));
 
-                //products.ForEach(UpdatePrice);
+                products.ForEach(product => Console.WriteLine(product));
 
-                /*products.ForEach((product) =>
-                {
-                    product.Price += (product.Price * 0.1);
-                });*/
+                Console.WriteLine();
+                List<string> upper = products.Select(NameToUpper).ToList();
+                upper.ForEach(item => Console.WriteLine(item));
 
-                /*Action<Product> action = UpdatePrice;
-                products.ForEach(action);*/
-
-                products.ForEach(product => product.Price += product.Price * 0.1);
-
-                foreach (Product product in products)
-                {
-                    Console.WriteLine(product);
-                }
+                Console.WriteLine();
+                List<string> lower = products.Select(product => product.Name.ToLower()).ToList();
+                lower.ForEach(item => Console.WriteLine(item));
             }
 			catch (Exception ex)
 			{
@@ -41,10 +35,10 @@ namespace CourseNelioAlves
 			}
         }
 
-        // To match an Action needs to be void and have one up to 16 parameters
-        private static void UpdatePrice(Product product)
+        private static string NameToUpper(Product product)
         {
-            product.Price += (product.Price * 0.1);
+            return product.Name.ToUpper();
         }
+
     }
 }
