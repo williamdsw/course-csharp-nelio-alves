@@ -1,4 +1,5 @@
 ﻿
+using LastChapter.Entities;
 using System;
 using System.Collections.Generic;
 
@@ -10,17 +11,38 @@ namespace CourseNelioAlves
         {
 			try
 			{
-                DateTime dateTime = new DateTime(2019, 08, 15, 13, 15, 12);
-                Console.WriteLine(dateTime.ElapsedTime());
+                List<Product> products = new List<Product>();
 
-                string s1 = "Good morning dear students!";
-                Console.WriteLine(s1);
-                Console.WriteLine(s1.Cut(10));
+                products.Add(new Product("TV", 900.00));
+                products.Add(new Product("Notebook", 1200.00));
+                products.Add(new Product("Tablet", 450.00));
+
+                // Only works if class model implements IComparable
+                //products.Sort();
+                //products.Sort(CompareProducts);
+
+                //Comparison<Product> comparison = CompareProducts;
+                //products.Sort(comparison);
+
+                //Comparison<Product> comparison = (p1, p2) => p1.Name.ToUpper().CompareTo(p2.Name.ToUpper());
+                //products.Sort(comparison);
+
+                products.Sort((p1, p2) => p1.Name.ToUpper().CompareTo(p2.Name.ToUpper()));
+
+                foreach (Product product in products)
+                {
+                    Console.WriteLine(product);
+                }
             }
 			catch (Exception ex)
 			{
                 Console.WriteLine(ex.Message);
 			}
+        }
+
+        private static int CompareProducts(Product p1, Product p2)
+        {
+            return p1.Name.ToUpper().CompareTo(p2.Name.ToUpper());
         }
     }
 }
