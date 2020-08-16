@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace LastChapter.Services
 {
     public class CalculationService
@@ -16,6 +18,18 @@ namespace LastChapter.Services
         public static double Square(double x)
         {
             return x * x;
+        }
+
+        public static void ShowMax(double x, double y)
+        {
+            double max = Max(x, y);
+            Console.WriteLine($"Max: {max}");
+        }
+
+        public static void ShowSum(double x, double y)
+        {
+            double sum = Sum(x, y);
+            Console.WriteLine($"Sum: {sum}");
         }
     }
 }
