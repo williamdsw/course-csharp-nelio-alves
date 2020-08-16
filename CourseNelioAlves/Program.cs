@@ -35,6 +35,8 @@ namespace CourseNelioAlves
 			}
         }
 
+        // To work with Func<> delegate, 
+        // it needs to return something and have 1 up to 16 parameters
         private static string NameToUpper(Product product)
         {
             return product.Name.ToUpper();
