@@ -58,6 +58,43 @@ namespace CourseNelioAlves
 
                 Product result9 = products.Where(p => p.Id == 30).SingleOrDefault();
                 Console.WriteLine($"single or default test2: " + result9);
+
+                // Aggregations
+
+                double result10 = products.Max(products => products.Price);
+                Console.WriteLine($"Max Price: " + result10);
+
+                double result11 = products.Min(products => products.Price);
+                Console.WriteLine($"Min Price: " + result11);
+
+                double result12 = products.Where(p => p.Category.Id == 1).Sum(p => p.Price);
+                Console.WriteLine($"Category 1 Sum Prices: " + result12);
+
+                double result13 = products.Where(p => p.Category.Id == 1).Average(p => p.Price);
+                Console.WriteLine($"Category 1 Average Price: " + result13);
+
+                double result14 = products.Where(p => p.Category.Id == 5).Select(p => p.Price).DefaultIfEmpty(0.0).Average();
+                Console.WriteLine($"Category 5 Average Price: " + result14);
+
+                double result15 = products.Where(p => p.Category.Id == 1).Select(p => p.Price).Aggregate((x, y) => x + y);
+                Console.WriteLine($"Category 1 Aggregate Sum: " + result15);
+
+                double result16 = products.Where(p => p.Category.Id == 5).Select(p => p.Price).Aggregate(0.0, (x, y) => x + y);
+                Console.WriteLine($"Category 5 Aggregate Sum: " + result16);
+
+                Console.WriteLine();
+                var result17 = products.GroupBy(p => p.Category);
+
+                // Key - Pair
+                foreach(IGrouping<Category, Product> group in result17)
+                {
+                    Console.WriteLine($"Category {group.Key.Name} :");
+                    foreach(Product p in group)
+                    {
+                        Console.WriteLine(p);
+                    }
+                    Console.WriteLine('\n');
+                }
             }
 			catch (Exception ex)
 			{
