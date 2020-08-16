@@ -1,33 +1,41 @@
 ﻿
 using LastChapter.Entities;
-using LastChapter.Services;
 using System;
+using System.Collections.Generic;
 
 namespace CourseNelioAlves
 {
-    public delegate void BinaryNumericOperation(double n1, double n2);
-
     class Program
     {
         static void Main(string[] args)
         {
 			try
 			{
-                double x = 10;
-                double y = 12;
+                List<Product> products = new List<Product>();
 
-                // Multicast delegates
-                BinaryNumericOperation op = CalculationService.ShowSum;
-                op += CalculationService.ShowMax;
+                products.Add(new Product("TV", 900.00));
+                products.Add(new Product("Mouse", 50.00));
+                products.Add(new Product("Tablet", 350.50));
+                products.Add(new Product("HD Case", 80.90));
 
-                Console.WriteLine($"x = {x}, y = {y}");
-                op(x, y);
-                //op.Invoke(x, y);
+                //products.RemoveAll((p) => p.Price >= 100.0);
+                products.RemoveAll(ProductTest);
+
+                foreach (Product product in products)
+                {
+                    Console.WriteLine(product);
+                }
             }
 			catch (Exception ex)
 			{
                 Console.WriteLine(ex.Message);
 			}
+        }
+
+        // Needs to return boolean and have a generic parameter
+        public static bool ProductTest(Product p)
+        {
+            return p.Price >= 100.0;
         }
     }
 }
