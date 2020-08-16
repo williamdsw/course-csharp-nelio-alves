@@ -12,35 +12,20 @@ namespace CourseNelioAlves
         {
 			try
 			{
-                List<Product> products = new List<Product>();
+                int[] numbers = new int[] { 2, 3, 4, 5 };
 
-                products.Add(new Product("TV", 900.00));
-                products.Add(new Product("Mouse", 50.00));
-                products.Add(new Product("Tablet", 350.50));
-                products.Add(new Product("HD Case", 80.90));
+                // linq expression
+                var result = numbers.Where(x => x % 2 == 0).Select(x => x * 10);
 
-                products.ForEach(product => Console.WriteLine(product));
-
-                Console.WriteLine();
-                List<string> upper = products.Select(NameToUpper).ToList();
-                upper.ForEach(item => Console.WriteLine(item));
-
-                Console.WriteLine();
-                List<string> lower = products.Select(product => product.Name.ToLower()).ToList();
-                lower.ForEach(item => Console.WriteLine(item));
+                foreach (int item in result)
+                {
+                    Console.WriteLine(item);
+                }
             }
 			catch (Exception ex)
 			{
                 Console.WriteLine(ex.Message);
 			}
         }
-
-        // To work with Func<> delegate, 
-        // it needs to return something and have 1 up to 16 parameters
-        private static string NameToUpper(Product product)
-        {
-            return product.Name.ToUpper();
-        }
-
     }
 }
