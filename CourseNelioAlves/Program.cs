@@ -30,70 +30,38 @@ namespace CourseNelioAlves
                 products.Add(new Product(10, "Sound Bar", 700.0, catElectronics));
                 products.Add(new Product(11, "Level", 70.0, catTools));
 
-                Print("ALL PRODUCTS:", products);
-                
-                List<Product> result1 = products.Where(p => p.Category.Tier == 1 && p.Price < 900.0).ToList();
-                Print("TIER 1 AND PRICE < 900:", result1);
+                var result1 = from p in products
+                              where p.Category.Tier == 1 && p.Price < 900.0
+                              select p;
+                Print("TIER 1 AND PRICE < 900.0:", result1);
 
-                List<string> result2 = products.Where(p => p.Category.Name == "Tools").Select(p => p.Name).ToList();
+                List<string> result2 = (from p in products
+                               where p.Category.Name == "Tools"
+                               select p.Name).ToList();
                 Print("NAMES OF PRODUCTS FROM TOOLS:", result2);
 
-                var result3 = products.Where(p => p.Name[0] == 'C').Select(p => new { p.Name, p.Price, CategoryName = p.Category.Name });
+                var result3 = from p in products
+                              where p.Name[0] == 'C'
+                              select new { p.Name, p.Price, CategoryName = p.Category.Name };
                 Print("NAMES STARTED WITH 'C' AND ANONYMOUS OBJECT:", result3);
 
-                List<Product> result4 = products.Where(p => p.Category.Tier == 1).OrderBy(p => p.Price).ThenBy(p => p.Name).ToList();
-                Print("TIER 1 ORDER BY PRICE THEN BY NAME:", result4);
+                List<Product> result4 = (from p in products
+                                         where p.Category.Tier == 1
+                                         orderby p.Price, p.Name
+                                         select p).ToList();
+                Print("TIER 1 ORDER BY PRICE THEN BY NAME", result4);
 
-                List<Product> result5 = result4.Skip(2).Take(4).ToList();
-                Print("TIER 1 ORDER BY PRICE THEN BY NAME SKIP 2 TAKE 4:", result5);
+                List<Product> result5 = (from p in result4 select p).Skip(2).Take(4).ToList();
+                Print("TIER 1 ORDER BY PRICE THEN BY NAME SKIP 2 TAKE 4", result5);
 
-                Product result6 = products.First();
-                Console.WriteLine($"First test: " + result6);
-
-                Product result7 = products.Where(p => p.Price > 3000.0).FirstOrDefault();
-                Console.WriteLine($"First or default test: " + result7);
-
-                Product result8 = products.Where(p => p.Id == 3).SingleOrDefault();
-                Console.WriteLine($"single or default test1: " + result8);
-
-                Product result9 = products.Where(p => p.Id == 30).SingleOrDefault();
-                Console.WriteLine($"single or default test2: " + result9);
-
-                // Aggregations
-
-                double result10 = products.Max(products => products.Price);
-                Console.WriteLine($"Max Price: " + result10);
-
-                double result11 = products.Min(products => products.Price);
-                Console.WriteLine($"Min Price: " + result11);
-
-                double result12 = products.Where(p => p.Category.Id == 1).Sum(p => p.Price);
-                Console.WriteLine($"Category 1 Sum Prices: " + result12);
-
-                double result13 = products.Where(p => p.Category.Id == 1).Average(p => p.Price);
-                Console.WriteLine($"Category 1 Average Price: " + result13);
-
-                double result14 = products.Where(p => p.Category.Id == 5).Select(p => p.Price).DefaultIfEmpty(0.0).Average();
-                Console.WriteLine($"Category 5 Average Price: " + result14);
-
-                double result15 = products.Where(p => p.Category.Id == 1).Select(p => p.Price).Aggregate((x, y) => x + y);
-                Console.WriteLine($"Category 1 Aggregate Sum: " + result15);
-
-                double result16 = products.Where(p => p.Category.Id == 5).Select(p => p.Price).Aggregate(0.0, (x, y) => x + y);
-                Console.WriteLine($"Category 5 Aggregate Sum: " + result16);
-
-                Console.WriteLine();
-                var result17 = products.GroupBy(p => p.Category);
-
-                // Key - Pair
-                foreach(IGrouping<Category, Product> group in result17)
+                var result6 = (from p in products group p by p.Category);
+                foreach (IGrouping<Category, Product> group in result6)
                 {
-                    Console.WriteLine($"Category {group.Key.Name} :");
-                    foreach(Product p in group)
+                    Console.WriteLine($"\nCategory {group.Key.Name}");
+                    foreach (Product p in group)
                     {
                         Console.WriteLine(p);
                     }
-                    Console.WriteLine('\n');
                 }
             }
 			catch (Exception ex)
