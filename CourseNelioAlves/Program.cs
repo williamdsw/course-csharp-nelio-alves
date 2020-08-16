@@ -18,8 +18,17 @@ namespace CourseNelioAlves
                 products.Add(new Product("Tablet", 350.50));
                 products.Add(new Product("HD Case", 80.90));
 
-                //products.RemoveAll((p) => p.Price >= 100.0);
-                products.RemoveAll(ProductTest);
+                //products.ForEach(UpdatePrice);
+
+                /*products.ForEach((product) =>
+                {
+                    product.Price += (product.Price * 0.1);
+                });*/
+
+                /*Action<Product> action = UpdatePrice;
+                products.ForEach(action);*/
+
+                products.ForEach(product => product.Price += product.Price * 0.1);
 
                 foreach (Product product in products)
                 {
@@ -32,10 +41,10 @@ namespace CourseNelioAlves
 			}
         }
 
-        // Needs to return boolean and have a generic parameter
-        public static bool ProductTest(Product p)
+        // To match an Action needs to be void and have one up to 16 parameters
+        private static void UpdatePrice(Product product)
         {
-            return p.Price >= 100.0;
+            product.Price += (product.Price * 0.1);
         }
     }
 }
